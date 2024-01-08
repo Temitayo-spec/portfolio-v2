@@ -1,4 +1,4 @@
-import styles from './styles.module.css';
+import styles from './styles.module.scss';
 
 const Header = () => {
   return (
@@ -6,7 +6,7 @@ const Header = () => {
       <div className={styles.header__inner}>
         <div className={styles.flex__one}>
           <div className={styles.logo}>
-            <h3>TY</h3>
+            <p>TY</p>
           </div>
           <p className={styles.location}>
             currently living in <br /> <span>Lagos, Nigeria</span>
@@ -22,7 +22,7 @@ const Header = () => {
               fill="none"
             >
               <circle cx="3.5" cy="4" r="3.5" fill="#D9D9D9" />
-            </svg>
+            </svg>{' '}
             menu
           </p>
         </div>

@@ -2,6 +2,8 @@
 
 :root {
   --background-color: #212121;
+  --font-spline-sans: 'Spline Sans', sans-serif;
+  --font-bebas-neue: 'Bebas Neue', sans-serif;
 }
 
 * {
@@ -15,4 +17,34 @@ body {
   max-width: 100vw;
   overflow-x: hidden;
   background: var(--background-color);
+  height: 100%;
+
+
+  &::-webkit-scrollbar {
+    width: 0.5rem;
+
+    &-thumb {
+      border-radius: 0.5rem;
+      background: #fff;
+    }
+
+    &-track {
+      border-radius: 0.5rem;
+      background: var(--background-color);
+    }
+
+  }
+}
+
+p {
+  font-family: var(--font-spline-sans);
+  font-size: 1rem;
+  font-weight: 400;
+  letter-spacing: -0.02rem;
+}
+
+a {
+  text-decoration: none;
+  color: #fff;
+  font-family: var(--font-spline-sans);
 }
