@@ -1,4 +1,4 @@
-import { BriefAboutSection, Header, HeroSection } from '@/components';
+import { BriefAboutSection, Footer, Header, HeroSection } from '@/components';
 import styles from '@/styles/Home.module.scss';
 
 export default function Home() {
@@ -7,6 +7,7 @@ export default function Home() {
       <Header />
       <HeroSection />
       <BriefAboutSection />
+      <Footer />
     </main>
   );
 }

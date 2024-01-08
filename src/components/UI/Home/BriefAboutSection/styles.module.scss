@@ -1,11 +1,21 @@
 .wrapper {
-    width: 90%;
-    max-width: 1200px;
     height: 100vh;
+    position: relative;
+    z-index: 1;
+    background-color: var(--background-color);
     display: flex;
     flex-direction: column;
     justify-content: center;
-    margin: auto;
+    width: 100%;
+    border-radius: 0 0 40px 40px;
+    margin-bottom: 100vh;
+
+
+    .inner {
+        margin: auto;
+        width: 90%;
+        max-width: 1200px;
+    }
 
     p {
         color: #FFF;
