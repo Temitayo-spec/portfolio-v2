@@ -1,19 +1,29 @@
 import styles from './styles.module.scss';
+import { AnimatedLink, MaskText } from '@/components';
 
 const Header = () => {
+  const locationPhrase = ['currently living in', 'Lagos, Nigeria'];
+
   return (
     <section className={styles.header__wrapper}>
       <div className={styles.header__inner}>
         <div className={styles.flex__one}>
           <div className={styles.logo}>
-            <p>TY</p>
+            <div>
+              <AnimatedLink
+                title="Ty"
+                secondTitle="Temitayo"
+                isLink={true}
+                href="/"
+              />
+            </div>
           </div>
-          <p className={styles.location}>
-            currently living in <br /> <span>Lagos, Nigeria</span>
-          </p>
+          <div className={styles.location}>
+            <MaskText phrases={locationPhrase} tag="p" />
+          </div>
         </div>
         <div className={styles.flex__two}>
-          <p>
+          <div>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="7"
@@ -23,8 +33,8 @@ const Header = () => {
             >
               <circle cx="3.5" cy="4" r="3.5" fill="#D9D9D9" />
             </svg>{' '}
-            menu
-          </p>
+            <AnimatedLink title="menu" isLink={false} />
+          </div>
         </div>
       </div>
     </section>

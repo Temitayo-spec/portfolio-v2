@@ -11,9 +11,11 @@
   "dependencies": {
     "@studio-freight/lenis": "^1.0.33",
     "@studio-freight/react-lenis": "^0.0.40",
+    "framer-motion": "^10.17.9",
     "next": "14.0.4",
     "react": "^18",
     "react-dom": "^18",
+    "recoil": "^0.7.7",
     "sass": "^1.69.7"
   },
   "devDependencies": {
