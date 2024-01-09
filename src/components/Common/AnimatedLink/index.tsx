@@ -84,7 +84,7 @@ const AnimatedLink = ({
         animations={letterAnimation}
         isHovered={isHovered}
       />
-      <span onClick={onClick} className={styles.absolute__container}>
+      <span className={styles.absolute__container}>
         <AnimatedWord
           title={secondTitle ?? title}
           animations={letterAnimationTwo}
@@ -103,7 +103,7 @@ const AnimatedLink = ({
         animations={letterAnimation}
         isHovered={isHovered}
       />
-      <span className={styles.absolute__container}>
+      <span onClick={onClick} className={styles.absolute__container}>
         <AnimatedWord
           title={secondTitle ?? title}
           animations={letterAnimationTwo}

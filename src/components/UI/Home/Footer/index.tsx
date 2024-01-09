@@ -1,7 +1,11 @@
 import Link from 'next/link';
 import styles from './styles.module.scss';
+import { AnimatedLink, StaggeredText } from '@/components';
+import { useRecoilState } from 'recoil';
+import { viewAtom } from '../../../../../atoms/viewAtom';
 
 const Footer = () => {
+    const [isInView] = useRecoilState(viewAtom);
   return (
     <footer className={styles.wrapper}>
       <div className={styles.footer__top}>
@@ -27,11 +31,11 @@ const Footer = () => {
         </div>
 
         <div className={styles.connect__link}>
-          <Link href="/contact">Let&apos;s work together</Link>
+          <AnimatedLink title="Let's work together" isLink={true} href='/contact' />
         </div>
       </div>
       <div className={styles.big__name}>
-        <h1>Temitayo</h1>
+        <h1>{isInView && <StaggeredText text={'Temitayo'.split('')} />}</h1>
       </div>
     </footer>
   );

@@ -62,13 +62,14 @@
         flex: 1;
         display: flex;
         justify-content: flex-end;
+        height: 34px;
 
         a {
-            color: var(--background-color);
-            font-size: 2rem;
-            font-family: 'Bebas Neue', sans-serif;
-            position: relative;
-            height: 40px;
+            span {
+                color: var(--background-color);
+                font-size: 2rem;
+                font-family: 'Bebas Neue', sans-serif;
+            }
 
             &::after {
                 position: absolute;
@@ -83,18 +84,19 @@
     }
 
     .big__name {
-        width: 95%;
-        max-width: 1200px;
-        margin: auto;
-
         h1 {
+            max-width: 1200px;
+            width: 95%;
+            margin: 0 auto;
             color: var(--background-color);
-            font-size: 27rem;
+            font-size: 25rem;
             font-family: 'Bebas Neue', sans-serif;
             font-weight: 400;
             line-height: 100%;
             text-transform: uppercase;
             letter-spacing: -0.245rem;
+            display: flex;
+            gap: 0.3rem;
         }
     }
 }

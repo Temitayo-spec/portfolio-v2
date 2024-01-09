@@ -1,9 +1,12 @@
+import { useRecoilState } from 'recoil';
 import styles from './styles.module.scss';
 import { AnimatedLink, MaskText } from '@/components';
+import { sidebarAtom } from '../../../../../atoms/sidebarAtom';
 
 const Header = () => {
   const locationPhrase = ['currently living in', 'Lagos, Nigeria'];
 
+  const [isOpen, setIsOpen] = useRecoilState(sidebarAtom);
   return (
     <section className={styles.header__wrapper}>
       <div className={styles.header__inner}>
@@ -33,7 +36,11 @@ const Header = () => {
             >
               <circle cx="3.5" cy="4" r="3.5" fill="#D9D9D9" />
             </svg>{' '}
-            <AnimatedLink title="menu" isLink={false} />
+            <AnimatedLink
+              title={isOpen ? 'close' : 'menu'}
+              isLink={false}
+              onClick={() => setIsOpen(!isOpen)}
+            />
           </div>
         </div>
       </div>

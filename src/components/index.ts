@@ -4,3 +4,5 @@ export { default as BriefAboutSection } from './UI/Home/BriefAboutSection';
 export { default as Footer } from './UI/Home/Footer';
 export { default as AnimatedLink } from './Common/AnimatedLink';
 export { default as MaskText } from './Common/MaskText';
+export { default as Layout } from './Layout';
+export { default as StaggeredText } from './Common/StaggeredText';

@@ -1,0 +1,14 @@
+.text {
+    display: flex;
+    flex-wrap: wrap;
+
+    .word {
+        margin-right: 0.4rem;
+        position: relative;
+    }
+
+    .shadow {
+        position: absolute;
+        opacity: 0.1;
+    }
+}

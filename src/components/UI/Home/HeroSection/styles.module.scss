@@ -17,9 +17,9 @@
             color: #FFF;
             font-family: 'Bebas Neue', sans-serif;
             font-weight: 400;
-            line-height: 100%;
             text-transform: uppercase;
             letter-spacing: -0.245rem;
+
 
             span {
                 font-size: 12.5rem;
@@ -27,11 +27,16 @@
             }
 
             &:first-of-type {
-                font-size: 5rem;
+                overflow-y: hidden;
+                span {
+                    font-size: 5rem;
+                }
             }
 
-            &:last-of-type {
+            &:last-of-type span {
                 font-size: 27rem;
+                margin-top: -50px;
+                gap: 0;
             }
         }
 
@@ -40,7 +45,7 @@
             font-family: 'Bebas Neue', sans-serif;
             font-weight: 400;
             margin-left: auto;
-            margin-top: -2rem;
+            margin-top: -6rem;
             position: relative;
 
             &::after {
