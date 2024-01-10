@@ -8,6 +8,7 @@
     flex-shrink: 0;
     background: rgba(0, 0, 0, 0.40);
     backdrop-filter: blur(38px);
+    transform-origin: top;
 
     .sidemenu__inner {
         display: flex;
@@ -30,20 +31,39 @@
             flex: 1;
         }
 
+        .nav__container li {
+            overflow-y: hidden;
+        }
 
-        .nav__container li a {
-            color: #FFF;
-            font-family: 'Bebas Neue';
-            font-size: 8rem;
-            font-weight: 400;
-            line-height: 100%;
-            letter-spacing: -0.16rem;
-            text-transform: uppercase;
+        .nav__container li div {
             position: relative;
+            bottom: -140px;
 
-            span {
-                letter-spacing: -0.45rem;
-                margin-right: 1.5rem;
+            a {
+                color: #FFF;
+                font-family: 'Bebas Neue';
+                font-size: 8rem;
+                font-weight: 400;
+                line-height: 100%;
+                letter-spacing: -0.16rem;
+                text-transform: uppercase;
+                transition: all 1s cubic-bezier(0.83,
+                        0,
+                        0.17,
+                        1);
+
+                &:hover {
+                    letter-spacing: 1rem;
+                }
+
+                span {
+                    letter-spacing: -0.45rem;
+                    margin-right: 1.5rem;
+                }
+
+                &.active {
+                    pointer-events: none;
+                }
             }
         }
 
@@ -57,15 +77,21 @@
 
             li {
                 width: 100%;
+                overflow-y: hidden;
 
-                a {
-                    width: 100%;
-                    display: flex;
-                    justify-content: space-between;
-                    color: #FFF;
-                    font-family: 'Spline Sans';
-                    font-size: 1rem;
-                    font-weight: 400;
+                div {
+                    position: relative;
+                    bottom: -140px;
+
+                    a {
+                        width: 100%;
+                        display: flex;
+                        justify-content: space-between;
+                        color: #FFF;
+                        font-family: 'Spline Sans';
+                        font-size: 1rem;
+                        font-weight: 400;
+                    }
                 }
             }
         }
@@ -78,14 +104,24 @@
     color: #FFF;
     font-weight: 400;
 
-    p:first-of-type {
-        font-size: 1rem;
-        text-decoration-line: none;
+    div {
+        overflow-y: hidden;
+
+        p {
+            color: #FFF;
+            font-size: 1.25rem;
+            text-decoration-line: underline;
+            position: relative;
+            bottom: -140px;
+
+            &:first-of-type {
+                font-size: 1rem;
+                text-decoration-line: none;
+            }
+
+
+        }
     }
 
-    p {
-        color: #FFF;
-        font-size: 1.25rem;
-        text-decoration-line: underline;
-    }
+
 }
