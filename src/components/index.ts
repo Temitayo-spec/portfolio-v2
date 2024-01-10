@@ -6,3 +6,4 @@ export { default as AnimatedLink } from './Common/AnimatedLink';
 export { default as MaskText } from './Common/MaskText';
 export { default as Layout } from './Layout';
 export { default as StaggeredText } from './Common/StaggeredText';
+export { default as SideMenu } from './Common/SideMenu';

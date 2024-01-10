@@ -1,7 +1,6 @@
 .header__wrapper {
     background: var(--background-color);
     position: relative;
-    z-index: 1;
 
     .header__inner {
         display: flex;
@@ -11,6 +10,8 @@
         width: 90%;
         margin: 0 auto;
         padding: 2em 0;
+        position: relative;
+        z-index: 4;
     }
 }
 
