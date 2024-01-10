@@ -91,6 +91,30 @@
                         font-family: 'Spline Sans';
                         font-size: 1rem;
                         font-weight: 400;
+                        position: relative;
+                        padding: 0.2rem 0;
+
+                        &:after {
+                            position: absolute;
+                            content: '';
+                            height: 0.125rem;
+                            background: #fff;
+                            width: 100%;
+                            transform: scaleX(0);
+                            bottom: -1px;
+                            transition: transform 1s cubic-bezier(0.83,
+                                    0,
+                                    0.17,
+                                    1);
+                            transform-origin: right;
+                        }
+
+                        &:hover {
+                            &:after {
+                                transform: scaleX(1);
+                                transform-origin: left;
+                            }
+                        }
                     }
                 }
             }
@@ -107,19 +131,17 @@
     div {
         overflow-y: hidden;
 
+        &:first-child p {
+            font-size: 1rem;
+            text-decoration-line: none;
+        }
+
         p {
             color: #FFF;
             font-size: 1.25rem;
-            text-decoration-line: underline;
+            text-decoration: underline;
             position: relative;
             bottom: -140px;
-
-            &:first-of-type {
-                font-size: 1rem;
-                text-decoration-line: none;
-            }
-
-
         }
     }
 

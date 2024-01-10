@@ -31,11 +31,21 @@ const Footer = () => {
         </div>
 
         <div className={styles.connect__link}>
-          <AnimatedLink title="Let's work together" isLink={true} href='/contact' />
+          <AnimatedLink
+            title="Let's work together"
+            isLink={true}
+            href="/contact"
+          />
         </div>
       </div>
-      <div className={styles.big__name}>
-        <h1>{isInView && <StaggeredText text={'Temitayo'.split('')} />}</h1>
+      <div className={styles.bottom}>
+        <div className={styles.briefing}>
+          <p>FRONTEND DEVELOPER</p>
+          <p>PORTFOLIO 2024</p>
+        </div>
+        <div className={styles.big__name}>
+          <h1>{isInView && <StaggeredText text={'Temitayo'.split('')} />}</h1>
+        </div>
       </div>
     </footer>
   );

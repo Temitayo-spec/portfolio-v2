@@ -16,7 +16,8 @@
     "react": "^18",
     "react-dom": "^18",
     "recoil": "^0.7.7",
-    "sass": "^1.69.7"
+    "sass": "^1.69.7",
+    "three": "^0.160.0"
   },
   "devDependencies": {
     "@commitlint/cli": "^18.4.4",
@@ -24,6 +25,7 @@
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
+    "@types/three": "^0.160.0",
     "eslint": "^8",
     "eslint-config-next": "14.0.4",
     "husky": "^8.0.3",
