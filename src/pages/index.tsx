@@ -1,4 +1,4 @@
-import { BriefAboutSection, Footer, Header, HeroSection } from '@/components';
+import { BriefAboutSection, HeroSection } from '@/components';
 import styles from '@/styles/Home.module.scss';
 
 export default function Home() {
@@ -6,7 +6,6 @@ export default function Home() {
     <main className={styles.main__wrapper}>
       <HeroSection />
       <BriefAboutSection />
-      <Footer />
     </main>
   );
 }

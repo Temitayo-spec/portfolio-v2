@@ -7,7 +7,7 @@ import { viewAtom } from '../../../../../atoms/viewAtom';
 const Footer = () => {
     const [isInView] = useRecoilState(viewAtom);
   return (
-    <footer className={styles.wrapper}>
+    <footer className={styles.footer__wrapper}>
       <div className={styles.footer__top}>
         <div className={styles.links__container}>
           <div className={styles.column}>

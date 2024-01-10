@@ -1,7 +1,7 @@
 import ReactLenis from '@studio-freight/react-lenis';
 import React from 'react';
 import { RecoilRoot } from 'recoil';
-import { Header, SideMenu } from '..';
+import { Footer, Header, SideMenu } from '..';
 
 const Layout = ({ children }: { children: React.ReactNode }) => {
   return (
@@ -14,6 +14,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
         <Header />
         <SideMenu />
         {children}
+        <Footer />
       </RecoilRoot>
     </ReactLenis>
   );
