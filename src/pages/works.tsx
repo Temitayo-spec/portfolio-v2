@@ -2,12 +2,14 @@ import styles from '@/styles/Works.module.scss';
 import { motion } from 'framer-motion';
 import Curve from '@/components/Common/Curve';
 import WorksRow from '@/components/UI/Works/WorksRow';
-import { GetServerSideProps, InferGetServerSidePropsType } from 'next';
+import { GetStaticProps,InferGetStaticPropsType } from 'next';
 import { client } from '../../sanity/lib/client';
 import { WorkRowProps } from '../../interfaces';
 import { useRecoilState } from 'recoil';
 import { viewAtom } from '../../atoms/viewAtom';
 import { useEffect, useRef } from 'react';
+
+export const revalidate = 60;
 
 const headingContainer = {
   hidden: {
@@ -51,9 +53,7 @@ const lineVariants = {
   },
 };
 
-const Works = ({
-  works,
-}: InferGetServerSidePropsType<typeof getServerSideProps>) => {
+const Works = ({ works }: InferGetStaticPropsType<typeof getStaticProps>) => {
   const [, setIsInView] = useRecoilState(viewAtom);
 
   const componentRef = useRef(null) as unknown as any;
@@ -107,7 +107,7 @@ const Works = ({
 
 export default Works;
 
-export const getServerSideProps = (async () => {
+export const getStaticProps = (async () => {
   const query = `*[_type == "works"]{
   ...,
   roles[]->,
@@ -120,5 +120,5 @@ export const getServerSideProps = (async () => {
   const works: WorkRowProps[] = await res;
 
   // Pass data to the page via props
-  return { props: { works } };
-}) satisfies GetServerSideProps<{ works: WorkRowProps[] }>;
+  return { props: { works }, revalidate: 60 };
+}) satisfies GetStaticProps<{ works: WorkRowProps[] }>;
