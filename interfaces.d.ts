@@ -25,3 +25,11 @@ export interface AnimProps {
     | { top: string; transition: { duration: number; ease: number[] } }
     | { d: any; transition: { duration: number; ease: number[] } };
 }
+
+export interface WorkRowProps {
+  clients_collaborators: { title: string }[];
+  roles: any[];
+  brief_discussion: string;
+  project_title: string;
+  project__link: string;
+}

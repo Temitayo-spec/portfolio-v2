@@ -1,19 +1,14 @@
 import { defineField, defineType } from 'sanity';
 
 export default defineType({
-  name: 'category',
-  title: 'Category',
+  name: 'clients',
+  title: 'Clients and Collaborators',
   type: 'document',
   fields: [
     defineField({
       name: 'title',
-      title: 'Title',
+      title: "Client's or Collaborator's name with role",
       type: 'string',
-    }),
-    defineField({
-      name: 'description',
-      title: 'Description',
-      type: 'text',
     }),
   ],
 });
