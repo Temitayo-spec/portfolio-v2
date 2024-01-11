@@ -60,8 +60,8 @@ export const links = [
     url: '/about',
   },
   {
-    title: 'Work',
-    url: '/work',
+    title: 'Works',
+    url: '/works',
   },
   {
     title: 'Contact',
@@ -76,10 +76,10 @@ export const socialLinks = [
   },
   {
     title: 'twitter',
-    url: '/about',
+    url: 'https://twitter.com/OlawanleTemita1',
   },
   {
     title: 'linkedin',
-    url: '/work',
+    url: 'https://www.linkedin.com/in/temitayo-spec/',
   },
 ];

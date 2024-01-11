@@ -5,7 +5,7 @@ import { useRecoilState } from 'recoil';
 import { viewAtom } from '../../../../../atoms/viewAtom';
 
 const Footer = () => {
-    const [isInView] = useRecoilState(viewAtom);
+  const [isInView] = useRecoilState(viewAtom);
   return (
     <footer className={styles.footer__wrapper}>
       <div className={styles.footer__top}>
@@ -15,17 +15,35 @@ const Footer = () => {
             <div className={styles.column__content}>
               <h3>Sitemap</h3>
               <Link href="/">Home</Link>
-              <Link href="/">Works</Link>
-              <Link href="/">About</Link>
+              <Link href="/works">Works</Link>
+              <Link href="/about">About</Link>
             </div>
           </div>
           <div className={styles.column}>
             <div className={styles.numbering}>02/</div>
             <div className={styles.column__content}>
               <h3>Social</h3>
-              <a href="https://github.com/Temitayo-spec">Github</a>
-              <a href="">Linkedin</a>
-              <a href="">Twitter</a>
+              <Link
+                href="https://github.com/Temitayo-spec"
+                rel="noopener noreferrer"
+                target="_blank"
+              >
+                Github
+              </Link>
+              <Link
+                rel="noopener noreferrer"
+                target="_blank"
+                href="https://www.linkedin.com/in/temitayo-spec/"
+              >
+                Linkedin
+              </Link>
+              <Link
+                rel="noopener noreferrer"
+                target="_blank"
+                href="https://twitter.com/OlawanleTemita1"
+              >
+                Twitter
+              </Link>
             </div>
           </div>
         </div>
