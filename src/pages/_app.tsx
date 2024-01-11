@@ -1,12 +1,14 @@
 import '@/styles/globals.scss';
 import type { AppProps } from 'next/app';
-import { ReactLenis } from '@studio-freight/react-lenis';
 import { Layout } from '@/components';
+import { AnimatePresence } from 'framer-motion';
 
-export default function App({ Component, pageProps }: AppProps) {
+export default function App({ Component, pageProps, router }: AppProps) {
   return (
     <Layout>
-      <Component {...pageProps} />
+      <AnimatePresence mode="wait">
+        <Component key={router.route} {...pageProps} />
+      </AnimatePresence>
     </Layout>
   );
 }

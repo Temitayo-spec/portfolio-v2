@@ -1,0 +1,27 @@
+.svg,
+.background {
+    position: fixed;
+    height: calc(100vh + 600px);
+    width: 100vw;
+    pointer-events: none;
+    left: 0;
+    top: 0;
+    z-index: 4;
+}
+
+.background {
+    background-color: black;
+    transition: opacity 0s linear 0.1s;
+}
+
+.route {
+    position: absolute;
+    left: 50%;
+    top: 40%;
+    color: white;
+    font-size: 46px;
+    z-index: 7;
+    transform: translateX(-50%);
+    text-align: center;
+    font-family: 'Bebas Neue';
+}

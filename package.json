@@ -9,6 +9,8 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@sanity/image-url": "^1.0.2",
+    "@sanity/vision": "^3.24.1",
     "@studio-freight/lenis": "^1.0.33",
     "@studio-freight/react-lenis": "^0.0.40",
     "framer-motion": "^10.17.9",
@@ -16,7 +18,9 @@
     "react": "^18",
     "react-dom": "^18",
     "recoil": "^0.7.7",
+    "sanity": "^3.24.1",
     "sass": "^1.69.7",
+    "styled-components": "^6.1.8",
     "three": "^0.160.0"
   },
   "devDependencies": {
