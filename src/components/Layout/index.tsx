@@ -3,9 +3,17 @@ import React from 'react';
 import { RecoilRoot } from 'recoil';
 import { Footer, Header, SideMenu } from '..';
 import NoiseBackground from '../Common/NoiseBackground';
+import { useRouter } from 'next/router';
 
 const Layout = ({ children }: { children: React.ReactNode }) => {
-  return (
+  const { pathname } = useRouter();
+  return pathname.includes('/studio') || pathname === '/studio' ? (
+    <RecoilRoot>
+      <Header />
+      <SideMenu />
+      {children}
+    </RecoilRoot>
+  ) : (
     <ReactLenis
       root
       duration={1.2}

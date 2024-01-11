@@ -3,6 +3,49 @@ import { useRecoilState } from 'recoil';
 import { viewAtom } from '../../atoms/viewAtom';
 import { useEffect, useRef } from 'react';
 import Curve from '@/components/Common/Curve';
+import { motion } from 'framer-motion';
+
+const headingContainer = {
+  hidden: {
+    opacity: 0,
+  },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.2,
+      ease: [0.83, 0, 0.17, 1],
+    },
+  },
+};
+
+const textVariants = {
+  hidden: {
+    opacity: 0,
+    y: 10,
+  },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.7,
+      ease: [0.83, 0, 0.17, 1],
+    },
+  },
+};
+
+const lineVariants = {
+  hidden: {
+    scaleX: 0,
+  },
+  visible: {
+    scaleX: 1,
+    transformOrigin: 'left',
+    transition: {
+      duration: 1.5,
+      ease: [0.76, 0, 0.24, 1],
+    },
+  },
+};
 
 const About = () => {
   const [, setIsInView] = useRecoilState(viewAtom);
@@ -34,10 +77,18 @@ const About = () => {
     <Curve backgroundColor="black">
       <div className={styles.about__wrapper}>
         <div className={styles.about__inner}>
-          <div className={styles.about__header}>
-            <p>About me</p>
-            <div className={styles.line__drawer} />
-          </div>
+          <motion.div
+            variants={headingContainer}
+            initial="hidden"
+            whileInView="visible"
+            className={styles.about__header}
+          >
+            <motion.p variants={textVariants}>About me</motion.p>
+            <motion.div
+              variants={lineVariants}
+              className={styles.line__drawer}
+            />
+          </motion.div>
           <section className={styles.main__content}>
             <div className={styles.title}>
               <h1>Temitayo</h1>
@@ -53,10 +104,7 @@ const About = () => {
                 clean and efficient code.
               </p>
 
-              <div className={styles.heading}>
-                <p>Experience</p>
-                <div className={styles.line__drawer} />
-              </div>
+              <Heading title="Experience" />
 
               <p>
                 As a frontend developer, I have accumulated 3 years of hands-on
@@ -67,10 +115,7 @@ const About = () => {
                 websites, providing users with an engaging digital experience.
               </p>
 
-              <div className={styles.heading}>
-                <p>Development Philosophy</p>
-                <div className={styles.line__drawer} />
-              </div>
+              <Heading title="Development Philosophy" />
 
               <p>
                 I believe in the power of code to transform ideas into reality.
@@ -81,10 +126,7 @@ const About = () => {
                 not only cutting-edge but also sustainable.
               </p>
 
-              <div className={styles.heading}>
-                <p>Tech Stack</p>
-                <div className={styles.line__drawer} />
-              </div>
+              <Heading title="Tech Stack" />
 
               <p>
                 Proficient in a versatile tech stack, my skills include: <br />
@@ -97,10 +139,7 @@ const About = () => {
                 various devices
               </p>
 
-              <div className={styles.heading}>
-                <p>Collaborative Approach</p>
-                <div className={styles.line__drawer} />
-              </div>
+              <Heading title="Collaborative Approach" />
 
               <p>
                 Having collaborated with cross-functional teams, I understand
@@ -110,10 +149,8 @@ const About = () => {
                 where collaboration is key, ensuring that the final product
                 meets both technical requirements and user expectations.
               </p>
-              <div className={styles.heading}>
-                <p>Continuous Learning</p>
-                <div className={styles.line__drawer} />
-              </div>
+
+              <Heading title="Continuous Learning" />
 
               <p>
                 In the dynamic world of frontend development, continuous
@@ -121,10 +158,8 @@ const About = () => {
                 my skill set, stay informed about emerging technologies, and
                 contribute to the vibrant developer community.
               </p>
-              <div className={styles.heading}>
-                <p>Let&apos;s Build Something Amazing</p>
-                <div className={styles.line__drawer} />
-              </div>
+
+              <Heading title="Let's Build Something Amazing" />
 
               <p ref={componentRef}>
                 Whether you have a specific project in mind or you&apos;re
@@ -142,3 +177,17 @@ const About = () => {
 };
 
 export default About;
+
+const Heading = ({ title }: { title: string }) => {
+  return (
+    <motion.div
+      variants={headingContainer}
+      initial="hidden"
+      whileInView="visible"
+      className={styles.heading}
+    >
+      <motion.p variants={textVariants}>{title}</motion.p>
+      <motion.div variants={lineVariants} className={styles.line__drawer} />
+    </motion.div>
+  );
+};
