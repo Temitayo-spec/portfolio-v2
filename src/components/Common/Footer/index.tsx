@@ -2,7 +2,7 @@ import Link from 'next/link';
 import styles from './styles.module.scss';
 import { AnimatedLink, StaggeredText } from '@/components';
 import { useRecoilState } from 'recoil';
-import { viewAtom } from '../../../../../atoms/viewAtom';
+import { viewAtom } from '../../../../atoms/viewAtom';
 
 const Footer = () => {
   const [isInView] = useRecoilState(viewAtom);

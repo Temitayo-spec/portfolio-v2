@@ -1,18 +1,22 @@
 import { useRecoilState } from 'recoil';
 import styles from './styles.module.scss';
 import { AnimatedLink, MaskText } from '@/components';
-import { sidebarAtom } from '../../../../../atoms/sidebarAtom';
+import { sidebarAtom } from '../../../../atoms/sidebarAtom';
 
 const Header = () => {
   const locationPhrase = ['currently living in', 'Lagos, Nigeria'];
 
   const [isOpen, setIsOpen] = useRecoilState(sidebarAtom);
   return (
-    <section className={`${styles.header__wrapper} ${isOpen ? styles.active__menu : ''}`}>
+    <section
+      className={`${styles.header__wrapper} ${
+        isOpen ? styles.active__menu : ''
+      }`}
+    >
       <div className={styles.header__inner}>
         <div className={styles.flex__one}>
           <div className={styles.logo}>
-            <div>
+            <div onClick={() => setIsOpen(!isOpen)}>
               <AnimatedLink
                 title="Ty"
                 secondTitle="Temitayo"
