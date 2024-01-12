@@ -3,6 +3,16 @@ import styles from './styles.module.scss';
 import { AnimatedLink, StaggeredText } from '@/components';
 import { useRecoilState } from 'recoil';
 import { viewAtom } from '../../../../atoms/viewAtom';
+import { AnimatePresence, motion } from 'framer-motion';
+
+const fadeVariant = {
+  hidden: {
+    opacity: 0,
+  },
+  visible: {
+    opacity: 1,
+  },
+};
 
 const Footer = () => {
   const [isInView] = useRecoilState(viewAtom);
@@ -62,7 +72,17 @@ const Footer = () => {
           <p>PORTFOLIO 2024</p>
         </div>
         <div className={styles.big__name}>
-          <h1>{isInView && <StaggeredText text={'Temitayo'.split('')} />}</h1>
+          <AnimatePresence mode="wait">
+            {isInView && (
+              <motion.h1
+                variants={fadeVariant}
+                initial="hidden"
+                animate={isInView ? 'visible' : ''}
+              >
+                <StaggeredText text={'Temitayo'.split('')} />
+              </motion.h1>
+            )}
+          </AnimatePresence>
         </div>
       </div>
     </footer>
