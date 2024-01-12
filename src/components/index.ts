@@ -8,3 +8,4 @@ export { default as Layout } from './Layout';
 export { default as StaggeredText } from './Common/StaggeredText';
 export { default as SideMenu } from './Common/SideMenu';
 export { default as Form } from './UI/Contact/Form';
+export { default as InitialCover } from './Common/InitialCover';
