@@ -16,7 +16,7 @@ const Header = () => {
       <div className={styles.header__inner}>
         <div className={styles.flex__one}>
           <div className={styles.logo}>
-            <div onClick={() => setIsOpen(!isOpen)}>
+            <div onClick={() => setIsOpen(false)}>
               <AnimatedLink
                 title="Ty"
                 secondTitle="Temitayo"
