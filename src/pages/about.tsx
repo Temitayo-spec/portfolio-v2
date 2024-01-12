@@ -4,6 +4,7 @@ import { viewAtom } from '../../atoms/viewAtom';
 import { useEffect, useRef } from 'react';
 import Curve from '@/components/Common/Curve';
 import { motion } from 'framer-motion';
+import { Footer } from '@/components';
 
 const headingContainer = {
   hidden: {
@@ -172,6 +173,7 @@ const About = () => {
           </section>
         </div>
       </div>
+      <Footer />
     </Curve>
   );
 };

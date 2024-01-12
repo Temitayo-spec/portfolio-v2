@@ -4,7 +4,7 @@ import { viewAtom } from '../../atoms/viewAtom';
 import { useEffect, useRef } from 'react';
 import Curve from '@/components/Common/Curve';
 import { motion } from 'framer-motion';
-import { Form } from '@/components';
+import { Footer, Form } from '@/components';
 
 const headingContainer = {
   hidden: {
@@ -93,6 +93,7 @@ const Contact = () => {
           <Form />
         </div>
       </div>
+      <Footer />
     </Curve>
   );
 };

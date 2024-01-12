@@ -27,7 +27,6 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
         <Header />
         <SideMenu />
         {children}
-        <Footer />
       </RecoilRoot>
     </ReactLenis>
   );

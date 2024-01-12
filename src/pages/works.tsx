@@ -8,6 +8,7 @@ import { WorkRowProps } from '../../interfaces';
 import { useRecoilState } from 'recoil';
 import { viewAtom } from '../../atoms/viewAtom';
 import { useEffect, useRef } from 'react';
+import { Footer } from '@/components';
 
 export const revalidate = 60;
 
@@ -99,7 +100,7 @@ const Works = ({ works }: InferGetStaticPropsType<typeof getStaticProps>) => {
             <WorksRow work={work} key={i} />
           ))}
         </div>
-        <div></div>
+        <Footer />
       </div>
     </Curve>
   );
