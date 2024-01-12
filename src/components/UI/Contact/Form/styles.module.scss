@@ -1,14 +1,13 @@
 .form__wrapper {
     margin: 1em 0 4rem;
 
-
-
     .form__inner {
         display: flex;
         flex-direction: column;
 
         input {
-            width: 48.9375rem;
+            max-width: 48.9375rem;
+            width: 100%;
             padding: 1.75rem 1.875rem;
             border: none;
             border-bottom: 1.5px solid #D9D9D9;
@@ -28,10 +27,19 @@
                 line-height: 100%;
                 letter-spacing: 0.0125rem;
             }
+
+            @media (max-width: 768px) {
+                font-size: 1rem;
+
+                &::placeholder {
+                    font-size: 1rem;
+                }
+            }
         }
 
         textarea {
-            width: 48.9375rem;
+            max-width: 48.9375rem;
+            width: 100%;
             padding: 1.75rem 1.875rem;
             border: none;
             border-bottom: 1.5px solid #D9D9D9;
@@ -53,11 +61,19 @@
                 line-height: 100%;
                 letter-spacing: 0.0125rem;
             }
+
+            @media (max-width: 768px) {
+                font-size: 1rem;
+
+                &::placeholder {
+                    font-size: 1rem;
+                }
+            }
         }
 
         button {
             display: flex;
-            width: 24.1875rem;
+            max-width: 24.1875rem;
             padding: 1.84375rem 0.5rem;
             justify-content: center;
             align-items: center;
@@ -75,6 +91,16 @@
             &:hover {
                 background: #fff;
                 color: #353535;
+            }
+
+            @media (max-width: 768px) {
+                font-size: 1rem;
+
+                padding: 1.4rem 0.5rem;
+
+                &::placeholder {
+                    font-size: 1rem;
+                }
             }
         }
     }

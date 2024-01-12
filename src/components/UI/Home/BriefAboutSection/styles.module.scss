@@ -9,6 +9,7 @@
     width: 100%;
     border-radius: 0 0 40px 40px;
     margin-bottom: 100vh;
+    padding-top: 7rem;
 
 
     .inner {
@@ -54,6 +55,8 @@
     }
 
     @media (max-width: 768px) {
+        height: 100%;
+        padding-top: 5rem;
 
         .inner {
             width: 90%;
