@@ -21,6 +21,10 @@
             line-height: 100%;
             letter-spacing: -0.16rem;
             text-transform: uppercase;
+
+            @media(max-width: 768px) {
+                font-size: 6rem;
+            }
         }
     }
 }

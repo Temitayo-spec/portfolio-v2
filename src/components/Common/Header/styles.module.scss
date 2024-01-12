@@ -21,6 +21,12 @@
         padding: 2em 0;
         position: relative;
     }
+
+    @media (max-width: 768px) {
+        .header__inner {
+            width: 90%;
+        }
+    }
 }
 
 .flex__one {
@@ -68,5 +74,17 @@
 
     div div:last-of-type p {
         color: #FFF;
+    }
+}
+
+@media (max-width: 768px) {
+    .logo div {
+        font-size: 0.875rem;
+    }
+
+    .location {
+        div div p {
+            font-size: 0.675rem;
+        }
     }
 }

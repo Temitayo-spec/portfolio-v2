@@ -50,9 +50,7 @@ const BriefAboutSection = () => {
           </p>
           <h3>
             <Words
-              value="Combining aesthetics and usefulness, I create solid user interfaces
-            in an artistic way. I love to spend time improving the aesthetics of
-            digital products without forgetting about usability."
+              value="Combining aesthetics and usefulness, I create solid user interfaces in an artistic way. I love to spend time improving the aesthetics of digital products without forgetting about usability."
             />
           </h3>
           <Link href="/about">

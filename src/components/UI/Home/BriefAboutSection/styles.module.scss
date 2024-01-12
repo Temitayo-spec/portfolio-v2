@@ -52,4 +52,19 @@
         gap: 1rem;
         margin-top: 2rem;
     }
+
+    @media (max-width: 768px) {
+
+        .inner {
+            width: 90%;
+            margin-bottom: 2rem;
+
+            h3 {
+                p span {
+                    font-size: 2rem;
+                    letter-spacing: -0.05rem;
+                }
+            }
+        }
+    }
 }

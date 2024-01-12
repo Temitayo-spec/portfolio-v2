@@ -11,4 +11,11 @@
         position: absolute;
         opacity: 0.1;
     }
+
+
+    @media (max-width: 768px) {
+        .word {
+            margin-right: 0.2rem;
+        }
+    }
 }

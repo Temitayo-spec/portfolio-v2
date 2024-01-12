@@ -116,4 +116,55 @@
             gap: 0.1rem;
         }
     }
+
+    @media (max-width: 768px) {
+        .footer__top {
+            flex-direction: column;
+
+        }
+
+        .links__container {
+            .column {
+                gap: 1rem;
+
+                .column__content {
+                    h3 {
+                        font-size: 1.3em;
+                        margin-bottom: 1rem;
+                    }
+
+                    a {
+                        font-size: 0.875rem;
+                        margin-bottom: 0.5rem;
+                    }
+                }
+            }
+        }
+
+        .connect__link {
+            justify-content: flex-start;
+            height: 12px;
+            margin-top: 3.5rem;
+
+            a {
+                span {
+                    font-size: 1.5rem;
+                }
+
+                &::after {
+                    height: 2px;
+                }
+            }
+        }
+
+        .big__name {
+
+            h1 {
+                width: 95%;
+                margin: 0 auto;
+                font-size: 8.5rem;
+                letter-spacing: -0.975rem;
+            }
+        }
+    }
 }

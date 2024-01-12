@@ -60,5 +60,40 @@
                 z-index: 3;
             }
         }
+
+    }
+
+    @media (max-width: 768px) {
+
+        .inner {
+            width: 95%;
+            margin-top: 2.5rem;
+
+            h1 {
+                span {
+                    font-size: 4rem;
+                    letter-spacing: -0.5675rem;
+                }
+
+                &:first-of-type {
+                    overflow-y: hidden;
+
+                    span {
+                        font-size: 3rem;
+                    }
+                }
+
+                &:last-of-type span {
+                    font-size: 8rem;
+                    margin-top: 0;
+                    gap: 0;
+                    margin-right: 0.2rem;
+                }
+            }
+
+            h3 {
+                margin-top: 0;
+            }
+        }
     }
 }

@@ -45,3 +45,9 @@ a {
   color: #fff;
   font-family: var(--font-spline-sans);
 }
+
+@media (max-width: 768px) {
+  p {
+    font-size: 0.875rem;
+  }
+}
