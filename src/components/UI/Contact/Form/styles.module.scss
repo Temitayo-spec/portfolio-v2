@@ -1,0 +1,81 @@
+.form__wrapper {
+    margin: 1em 0 4rem;
+
+
+
+    .form__inner {
+        display: flex;
+        flex-direction: column;
+
+        input {
+            width: 48.9375rem;
+            padding: 1.75rem 1.875rem;
+            border: none;
+            border-bottom: 1.5px solid #D9D9D9;
+            background: #353535;
+            color: #FFF;
+            font-family: 'Spline Sans';
+            font-size: 1.25rem;
+            font-weight: 400;
+            line-height: 100%;
+            letter-spacing: 0.0125rem;
+            outline: none;
+
+            &::placeholder {
+                color: #FFF;
+                font-size: 1.25rem;
+                font-weight: 400;
+                line-height: 100%;
+                letter-spacing: 0.0125rem;
+            }
+        }
+
+        textarea {
+            width: 48.9375rem;
+            padding: 1.75rem 1.875rem;
+            border: none;
+            border-bottom: 1.5px solid #D9D9D9;
+            background: #353535;
+            color: #FFF;
+            font-family: 'Spline Sans';
+            font-size: 1.25rem;
+            font-weight: 400;
+            line-height: 100%;
+            letter-spacing: 0.0125rem;
+            height: 10rem;
+            resize: none;
+            outline: none;
+
+            &::placeholder {
+                color: #FFF;
+                font-size: 1.25rem;
+                font-weight: 400;
+                line-height: 100%;
+                letter-spacing: 0.0125rem;
+            }
+        }
+
+        button {
+            display: flex;
+            width: 24.1875rem;
+            padding: 1.84375rem 0.5rem;
+            justify-content: center;
+            align-items: center;
+            gap: 0.5rem;
+            background: #353535;
+            margin-top: 1.5rem;
+            border: none;
+            color: #FFF;
+            font-family: 'Spline Sans';
+            font-size: 1.125rem;
+            font-weight: 400;
+            cursor: pointer;
+            transition: all 0.4s ease-in-out;
+
+            &:hover {
+                background: #fff;
+                color: #353535;
+            }
+        }
+    }
+}

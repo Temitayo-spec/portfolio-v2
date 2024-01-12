@@ -4,6 +4,7 @@ import { RecoilRoot } from 'recoil';
 import { Footer, Header, SideMenu } from '..';
 import NoiseBackground from '../Common/NoiseBackground';
 import { useRouter } from 'next/router';
+import { Toaster } from 'react-hot-toast';
 
 const Layout = ({ children }: { children: React.ReactNode }) => {
   const { pathname } = useRouter();
@@ -20,6 +21,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
       easing={(t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t))}
     >
       <RecoilRoot>
+        <Toaster />
         <NoiseBackground />
         <Header />
         <SideMenu />
