@@ -2,7 +2,7 @@ import styles from '@/styles/Works.module.scss';
 import { motion } from 'framer-motion';
 import Curve from '@/components/Common/Curve';
 import WorksRow from '@/components/UI/Works/WorksRow';
-import { GetStaticProps,InferGetStaticPropsType } from 'next';
+import { GetStaticProps, InferGetStaticPropsType } from 'next';
 import { client } from '../../sanity/lib/client';
 import { WorkRowProps } from '../../interfaces';
 import { useRecoilState } from 'recoil';
@@ -100,8 +100,8 @@ const Works = ({ works }: InferGetStaticPropsType<typeof getStaticProps>) => {
             <WorksRow work={work} key={i} />
           ))}
         </div>
-        <Footer />
       </div>
+      <Footer />
     </Curve>
   );
 };
