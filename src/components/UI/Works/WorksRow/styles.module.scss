@@ -80,6 +80,63 @@
             text-decoration: underline;
         }
     }
+
+    @media (max-width: 768px) {
+        .work__title {
+            font-size: 6rem;
+        }
+
+        .flex__ctn {
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 0.5rem;
+        }
+
+        .item__one {
+            flex-direction: column;
+            justify-content: space-between;
+            flex: 3;
+            gap: 1rem;
+            align-items: flex-start;
+
+            &>p {
+                max-width: 26rem;
+                color: #FFF;
+                font-family: 'Spline Sans';
+                font-size: 0.875rem;
+                letter-spacing: -0.01rem;
+            }
+
+            .client__collaborators {
+                display: flex;
+                flex-direction: column;
+                gap: 0.5rem;
+
+                p {
+                    font-size: 0.875rem;
+                }
+            }
+        }
+
+        .item__two {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 0.5rem;
+
+            p {
+                color: #FFF;
+                font-family: 'Spline Sans';
+                font-size: 0.875rem;
+                font-weight: 400;
+            }
+
+            p:first-child {
+                text-decoration: underline;
+            }
+        }
+    }
 }
 
 
