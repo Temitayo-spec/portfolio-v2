@@ -1,11 +1,15 @@
 import React, { useRef, useEffect } from 'react';
 
-const NoiseBackgroundCanvas = () => {
-  const canvasRef = useRef(null);
+const NoiseBackgroundCanvas: React.FC = () => {
+  const canvasRef = useRef<HTMLCanvasElement | null>(null);
 
   useEffect(() => {
-    const canvas = canvasRef.current as any;
+    if (!canvasRef.current) return;
+
+    const canvas = canvasRef.current;
     const context = canvas.getContext('2d');
+
+    if (!context) return;
 
     const generateNoiseTexture = () => {
       const imageData = context.createImageData(canvas.width, canvas.height);
@@ -13,10 +17,10 @@ const NoiseBackgroundCanvas = () => {
 
       for (let i = 0; i < data.length; i += 4) {
         const value = Math.floor(Math.random() * 255);
-        data[i] = value;  // Red channel
-        data[i + 1] = value;  // Green channel
-        data[i + 2] = value;  // Blue channel
-        data[i + 3] = Math.floor(Math.random() * 50);  // Alpha channel (transparency)
+        data[i] = value; // Red channel
+        data[i + 1] = value; // Green channel
+        data[i + 2] = value; // Blue channel
+        data[i + 3] = Math.floor(Math.random() * 20); // Decreased alpha channel
       }
 
       context.putImageData(imageData, 0, 0);
