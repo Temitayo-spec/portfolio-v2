@@ -1,8 +1,7 @@
 import ReactLenis from '@studio-freight/react-lenis';
 import React from 'react';
 import { RecoilRoot } from 'recoil';
-import { Footer, Header, InitialCover, SideMenu } from '..';
-import NoiseBackground from '../Common/NoiseBackground';
+import { CustomCursor, Header, InitialCover, NoiseBackground, SideMenu } from '..';
 import { useRouter } from 'next/router';
 import { Toaster } from 'react-hot-toast';
 
@@ -25,6 +24,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
         <NoiseBackground />
         <InitialCover />
         <SideMenu />
+        <CustomCursor />
         {children}
       </RecoilRoot>
     </ReactLenis>

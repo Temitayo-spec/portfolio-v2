@@ -1,21 +1,9 @@
 import Link from 'next/link';
 import styles from './styles.module.scss';
-import { AnimatedLink, StaggeredText } from '@/components';
-import { useRecoilState } from 'recoil';
-import { viewAtom } from '../../../../atoms/viewAtom';
-import { AnimatePresence, motion } from 'framer-motion';
-
-const fadeVariant = {
-  hidden: {
-    opacity: 0,
-  },
-  visible: {
-    opacity: 1,
-  },
-};
+import { AnimatedLink } from '@/components';
+import { ParallaxEffect } from '../ParallaxTexts';
 
 const Footer = () => {
-  const [isInView] = useRecoilState(viewAtom);
   return (
     <footer className={styles.footer__wrapper}>
       <div className={styles.footer__top}>
@@ -72,17 +60,22 @@ const Footer = () => {
           <p>PORTFOLIO 2024</p>
         </div>
         <div className={styles.big__name}>
-          <AnimatePresence mode="wait">
-            {isInView && (
-              <motion.h1
-                variants={fadeVariant}
-                initial="hidden"
-                animate={isInView ? 'visible' : ''}
-              >
-                <StaggeredText text={'Temitayo'.split('')} />
-              </motion.h1>
-            )}
-          </AnimatePresence>
+          <ParallaxEffect baseVelocity={1}>
+            {Array.from({ length: 4 }).map((_, i) => (
+              <h1 key={i}>
+                Temitayo{' '}
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="7"
+                  height="8"
+                  viewBox="0 0 7 8"
+                  fill="none"
+                >
+                  <circle cx="3.5" cy="4" r="3.5" fill="#212121" />
+                </svg>
+              </h1>
+            ))}
+          </ParallaxEffect>
         </div>
       </div>
     </footer>

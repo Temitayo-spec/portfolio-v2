@@ -9,3 +9,7 @@ export { default as StaggeredText } from './Common/StaggeredText';
 export { default as SideMenu } from './Common/SideMenu';
 export { default as Form } from './UI/Contact/Form';
 export { default as InitialCover } from './Common/InitialCover';
+export { default as CustomCursor } from './Common/CustomCursor';
+export { ParallaxEffect } from './Common/ParallaxTexts';
+export { default as TextOpacityEffect } from './Common/TextOpacityEffect';
+export { default as NoiseBackground } from './Common/NoiseBackground';

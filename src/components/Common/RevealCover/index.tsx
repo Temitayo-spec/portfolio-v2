@@ -35,6 +35,7 @@ const RevealCover = () => {
       variants={variant}
       initial="hidden"
       whileInView="visible"
+      viewport={{ once: true }}
     ></motion.div>
   );
 };

@@ -1,5 +1,4 @@
 .wrapper {
-    min-height: 100vh;
     position: relative;
     z-index: 1;
     background-color: var(--background-color);
@@ -60,6 +59,7 @@
         padding-top: 5rem;
 
         .inner {
+            padding: 0;
             width: 90%;
             margin-bottom: 2rem;
 

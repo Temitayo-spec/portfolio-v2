@@ -8,7 +8,7 @@ import { WorkRowProps } from '../../interfaces';
 import { useRecoilState } from 'recoil';
 import { viewAtom } from '../../atoms/viewAtom';
 import { useEffect, useRef } from 'react';
-import { Footer } from '@/components';
+import { Footer, Header } from '@/components';
 
 export const revalidate = 60;
 
@@ -82,6 +82,7 @@ const Works = ({ works }: InferGetStaticPropsType<typeof getStaticProps>) => {
   }, []);
   return (
     <Curve backgroundColor="black">
+      <Header />
       <div ref={componentRef} className={styles.works__wrapper}>
         <div className={styles.works__inner}>
           <motion.div
