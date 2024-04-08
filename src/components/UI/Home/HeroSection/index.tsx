@@ -1,11 +1,25 @@
 import { StaggeredText } from '@/components';
 import styles from './styles.module.scss';
 import { ParallaxEffect } from '@/components/Common/ParallaxTexts';
+import Image from 'next/image';
+import my_photo from '../../../../../public/my_photo.png';
+import RevealCover, { imageVariants } from '@/components/Common/RevealCover';
+import { motion } from 'framer-motion';
 
 const HeroSection = () => {
   return (
     <div className={styles.wrapper}>
       <div className={styles.inner}>
+        <div className={styles.absolute_img}>
+          <RevealCover />
+          <motion.div
+            variants={imageVariants}
+            initial="hidden"
+            whileInView="visible"
+          >
+            <Image src={my_photo} alt="image" fill />
+          </motion.div>
+        </div>
         {/* <StaggeredText text={'Frontend Itachi'.split('')} /> */}
         <ParallaxEffect baseVelocity={-1}>
           <h2>Frontend Itachi -</h2>

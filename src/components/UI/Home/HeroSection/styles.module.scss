@@ -12,6 +12,29 @@
         margin: 0 auto;
         display: flex;
         flex-direction: column;
+        position: relative;
+
+        .absolute_img {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            overflow: hidden;
+
+            width: 30rem;
+            height: 100%;
+
+            div {
+                width: 100%;
+                height: 100%;
+
+                img {
+                    object-position: 0 -250px;
+                    object-fit: cover;
+
+                }
+            }
+        }
 
         h2 {
             font-size: 5rem;
@@ -69,6 +92,7 @@
 
         .inner {
             margin-top: 6rem;
+
             h2 {
                 font-size: 2rem;
                 letter-spacing: -0.0675rem;
@@ -88,6 +112,22 @@
             h3 {
                 margin-top: 4rem;
                 font-size: 1rem;
+            }
+
+            .absolute_img {
+                max-width: 15rem;
+                height: 100%;
+                top: 100px;
+
+                div {
+                    width: 100%;
+                    height: 100%;
+
+                    img {
+                        object-position: 0 -150px;
+                        object-fit: cover;
+                    }
+                }
             }
         }
     }

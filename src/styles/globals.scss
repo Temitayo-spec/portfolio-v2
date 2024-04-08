@@ -75,3 +75,23 @@ a {
   align-items: center;
   gap: 1rem;
 }
+
+.reveal_cover {
+  content: '';
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: var(--background-color);
+  z-index: 10;
+
+  @media (max-width: 599px) {
+    border-radius: 0;
+  }
+
+  @media (min-width: 600px) and (max-width: 1024px) {
+    border-radius: 0;
+  }
+}
