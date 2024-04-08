@@ -76,9 +76,8 @@ const About = () => {
   }, []);
   return (
     <Curve backgroundColor="black">
+      <Header />
       <div className={styles.about__wrapper}>
-        <Header />
-
         <div className={styles.about__inner}>
           <motion.div
             variants={headingContainer}
