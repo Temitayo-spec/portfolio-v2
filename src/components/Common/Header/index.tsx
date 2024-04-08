@@ -8,11 +8,7 @@ const Header = () => {
 
   const [isOpen, setIsOpen] = useRecoilState(sidebarAtom);
   return (
-    <section
-      className={`${styles.header__wrapper} ${
-        isOpen ? styles.active__menu : ''
-      }`}
-    >
+    <section className={`${styles.header__wrapper}`}>
       <div className={styles.header__inner}>
         <div className={styles.flex__one}>
           <div className={styles.logo}>

@@ -51,3 +51,27 @@ a {
     font-size: 0.875rem;
   }
 }
+
+.parallax {
+  overflow: hidden;
+  letter-spacing: -2px;
+  line-height: 0.8;
+  margin: 0;
+  white-space: nowrap;
+  display: flex;
+  flex-wrap: nowrap;
+}
+
+.parallax .scroller {
+  display: flex;
+  white-space: nowrap;
+  display: flex;
+  flex-wrap: nowrap;
+}
+
+.parallax span {
+  display: flex;
+  margin-right: 1rem;
+  align-items: center;
+  gap: 1rem;
+}

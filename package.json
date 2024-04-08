@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@motionone/utils": "^10.17.0",
     "@sanity/image-url": "^1.0.2",
     "@sanity/vision": "^3.24.1",
     "@studio-freight/lenis": "^1.0.33",

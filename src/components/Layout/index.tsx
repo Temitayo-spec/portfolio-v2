@@ -24,7 +24,6 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
         <Toaster />
         <NoiseBackground />
         <InitialCover />
-        <Header />
         <SideMenu />
         {children}
       </RecoilRoot>

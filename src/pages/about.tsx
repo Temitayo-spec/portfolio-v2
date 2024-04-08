@@ -4,7 +4,7 @@ import { viewAtom } from '../../atoms/viewAtom';
 import { useEffect, useRef } from 'react';
 import Curve from '@/components/Common/Curve';
 import { motion } from 'framer-motion';
-import { Footer } from '@/components';
+import { Footer, Header } from '@/components';
 
 const headingContainer = {
   hidden: {
@@ -77,6 +77,8 @@ const About = () => {
   return (
     <Curve backgroundColor="black">
       <div className={styles.about__wrapper}>
+        <Header />
+
         <div className={styles.about__inner}>
           <motion.div
             variants={headingContainer}

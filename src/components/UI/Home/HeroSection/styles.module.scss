@@ -7,38 +7,40 @@
     z-index: 1;
 
     .inner {
-        width: 90%;
+        width: 100%;
         max-width: 1440px;
         margin: 0 auto;
         display: flex;
         flex-direction: column;
+
+        h2 {
+            font-size: 5rem;
+            letter-spacing: -0.6675rem;
+            color: #FFF;
+            font-family: 'Bebas Neue', sans-serif;
+            font-weight: 400;
+            text-transform: uppercase;
+            letter-spacing: -0.045rem;
+            margin-top: 2rem;
+        }
 
         h1 {
             color: #FFF;
             font-family: 'Bebas Neue', sans-serif;
             font-weight: 400;
             text-transform: uppercase;
-            letter-spacing: -0.245rem;
+            letter-spacing: -0.45rem;
+            font-size: 27rem;
+            margin-top: 4rem;
+            display: flex;
+            align-items: center;
+            gap: 5rem;
 
-
-            span {
-                font-size: 12.5rem;
-                letter-spacing: -0.6675rem;
+            svg {
+                width: 4rem;
+                height: 4rem;
             }
 
-            &:first-of-type {
-                overflow-y: hidden;
-
-                span {
-                    font-size: 5rem;
-                }
-            }
-
-            &:last-of-type span {
-                font-size: 27rem;
-                margin-top: -50px;
-                gap: 0;
-            }
         }
 
         h3 {
@@ -46,8 +48,8 @@
             font-family: 'Bebas Neue', sans-serif;
             font-weight: 400;
             margin-left: auto;
-            margin-top: -6rem;
             position: relative;
+            font-size: 2rem;
 
             &::after {
                 position: absolute;
@@ -66,31 +68,26 @@
     @media (max-width: 768px) {
 
         .inner {
-            margin-top: 2.5rem;
+            margin-top: 6rem;
+            h2 {
+                font-size: 2rem;
+                letter-spacing: -0.0675rem;
+            }
 
             h1 {
-                span {
-                    font-size: 4rem;
-                    letter-spacing: -0.5675rem;
-                }
+                font-size: 8rem;
+                gap: 2rem;
+                margin-top: 2rem;
 
-                &:first-of-type {
-
-                    span {
-                        font-size: 3rem;
-                    }
-                }
-
-                &:last-of-type span {
-                    font-size: 8rem;
-                    margin-top: 0;
-                    gap: 0;
-                    margin-right: 0.2rem;
+                svg {
+                    width: 1rem;
+                    height: 1rem;
                 }
             }
 
             h3 {
-                margin-top: 0;
+                margin-top: 4rem;
+                font-size: 1rem;
             }
         }
     }
