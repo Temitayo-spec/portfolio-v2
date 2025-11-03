@@ -16,7 +16,7 @@ const HeroSection = () => {
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
-            className="relative w-[200px] h-[50vh] ms:w-[400px] md:h-[60vh]"
+            className="relative w-[200px] h-[50vh] md:w-[400px] md:h-[60vh]"
           >
             <Image src={my_photo} alt="image" fill className="object-cover" />
           </motion.div>
