@@ -1,0 +1,36 @@
+@import 'tailwindcss';
+
+:root {
+  --background-color: #212121;
+  --font-spline-sans: var(--font-spline-sans);
+  --font-bebas-neue: var(--font-bebas-neue);
+}
+
+@theme inline {
+  --color-main-bg: var(--background-color);
+
+  --font-spline-sans: var(--font-spline-sans);
+  --font-bebas-neue: var(--font-bebas-neue);
+}
+
+.wrapper {
+  @apply max-w-[1440px] w-[90%] mx-auto;
+}
+
+html,
+body {
+  max-width: 100vw;
+  font-family: var(--font-spline-sans);
+}
+
+::-webkit-scrollbar {
+  width: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #fff;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--background-color);
+}
