@@ -102,7 +102,7 @@ export const projects: Project[] = [
     description:
       'A platform for hiring verified household staff in Lagos. I built the employer web app and the admin console, deployed on Cloudflare Workers from a Turborepo monorepo and wired to the platform API through shared Zod contracts and a typed SDK.',
     stack: ['Next.js', 'Cloudflare Workers', 'Turborepo', 'Zod'],
-    link: null,
+    link: 'https://www.sheire.ng',
   },
   {
     title: 'Portcullis',
