@@ -151,7 +151,7 @@ const WorksCarousel = ({ works, total }: { works: Work[]; total: number }) => {
                 target="_blank"
                 rel="noreferrer noopener"
                 onClick={(e) => onCardClick(e, i, work)}
-                data-cursor={i === active ? 'Visit ↗' : 'View'}
+                data-cursor={i !== active ? 'View' : work.link ? 'Visit ↗' : undefined}
                 className="absolute inset-0 overflow-hidden rounded-[14px] bg-bg-soft [backface-visibility:hidden]"
               >
                 <WorkCover work={work} sizes="50vw" />
@@ -190,7 +190,12 @@ const WorksCarousel = ({ works, total }: { works: Work[]; total: number }) => {
       {/* Mobile: stacked cards */}
       <div className="wrapper flex flex-col gap-12 py-12 md:hidden">
         {works.map((work, i) => (
-          <a key={work.id} href={work.link ?? '#'} target="_blank" rel="noreferrer noopener" className="block">
+          // No href without a link, so unlinked projects (most mobile apps) aren't tappable.
+          <a
+            key={work.id}
+            {...(work.link ? { href: work.link, target: '_blank', rel: 'noreferrer noopener' } : {})}
+            className="block"
+          >
             <div className="relative aspect-[16/10] overflow-hidden rounded-xl bg-bg-soft">
               <WorkCover work={work} sizes="100vw" />
             </div>

@@ -40,6 +40,12 @@ const SplitReveal = ({
     const el = ref.current;
     if (!el || !ready) return;
 
+    // GSAP ignores the CSS reduced-motion rule, so skip the reveal and just show the text.
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      gsap.set(el, { visibility: 'visible' });
+      return;
+    }
+
     const split = SplitText.create(el, {
       // Words keep each word's characters together so lines never break mid-word.
       type: by === 'chars' ? 'lines,words,chars' : 'lines',

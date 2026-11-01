@@ -11,6 +11,7 @@ const to = process.env.CONTACT_TO_EMAIL || site.email;
 
 const limits = { inquirer_name: 120, email: 200, message: 5000, budget: 40 } as const;
 type Field = keyof typeof limits;
+const labels: Record<Field, string> = { inquirer_name: 'Name', email: 'Email', message: 'Message', budget: 'Budget' };
 
 const escape = (value: string) =>
   value.replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]!);
@@ -21,17 +22,20 @@ export async function POST(request: Request) {
   const apiKey = process.env.RESEND_API_KEY;
   if (!apiKey) return fail('Email is not configured.', 500);
 
-  let body: Record<string, unknown>;
+  let parsed: unknown;
   try {
-    body = await request.json();
+    parsed = await request.json();
   } catch {
     return fail('Invalid request.', 400);
   }
+  // JSON like `null`, `[]` or `"hi"` parses fine but isn't a form submission.
+  if (typeof parsed !== 'object' || parsed === null || Array.isArray(parsed)) return fail('Invalid request.', 400);
+  const body = parsed as Record<string, unknown>;
 
   const values = {} as Record<Field, string>;
   for (const field of Object.keys(limits) as Field[]) {
     const value = typeof body[field] === 'string' ? (body[field] as string).trim() : '';
-    if (value.length > limits[field]) return fail(`${field} is too long.`, 400);
+    if (value.length > limits[field]) return fail(`${labels[field]} is too long.`, 400);
     values[field] = value;
   }
 

@@ -52,6 +52,14 @@ const Form = () => {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(values),
       });
+      // A 400 says what to fix (e.g. a mistyped email), so show that instead of the generic error.
+      if (res.status === 400) {
+        const { error } = await res.json().catch(() => ({ error: undefined }));
+        if (error) {
+          toast.error(error);
+          return;
+        }
+      }
       if (!res.ok) throw new Error(`sendmail responded ${res.status}`);
 
       toast.success('Sent successfully! I will get back to you soon.');

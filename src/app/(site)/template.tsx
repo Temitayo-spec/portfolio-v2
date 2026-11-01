@@ -1,11 +1,12 @@
 'use client';
-import { motion } from 'framer-motion';
+import { motion, MotionConfig } from 'framer-motion';
 import { easeInOutQuart } from '@/src/constants';
 
 /** Re-mounts on every navigation: a crimson panel then a dark one lift off the new page. */
 export default function Template({ children }: { children: React.ReactNode }) {
   return (
-    <>
+    // With "reduce motion" on, the panels skip straight to scaleY: 0.
+    <MotionConfig reducedMotion="user">
       <motion.div
         aria-hidden
         className="pointer-events-none fixed inset-0 z-[150] origin-top bg-accent"
@@ -21,6 +22,6 @@ export default function Template({ children }: { children: React.ReactNode }) {
         transition={{ duration: 0.9, ease: easeInOutQuart }}
       />
       {children}
-    </>
+    </MotionConfig>
   );
 }
