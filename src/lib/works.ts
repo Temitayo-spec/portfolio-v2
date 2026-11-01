@@ -24,7 +24,8 @@ export type Work = {
   coverAlt: string;
   coverBlur: string | null;
   /** Phone mockup for mobile apps without a cover: a splash colour and an icon or wordmark. */
-  phone: { image?: string; background: string; wordmark?: boolean } | null;
+  /** Mobile apps: real screens (front first, at most two), else the icon on its splash colour. */
+  phone: { screens?: string[]; image?: string; background: string; wordmark?: boolean } | null;
   featured: boolean;
 };
 

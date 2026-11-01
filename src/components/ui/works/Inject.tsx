@@ -1,6 +1,7 @@
 'use client';
 import { FC, useState } from 'react';
 import type { Work, WorkType } from '@/src/lib/works';
+import type { Package } from '@/src/lib/packages';
 import { workTypes } from '@/src/constants';
 import { useViewStore } from '@/src/store/view.store';
 import PageShell from '../../shared/PageShell';
@@ -8,8 +9,9 @@ import TopBar from '../../shared/TopBar';
 import SplitReveal from '../../shared/SplitReveal';
 import Mixed from '../../shared/Mixed';
 import WorksList from './WorksList';
+import Packages from './Packages';
 
-const WorksInject: FC<{ works: Work[] }> = ({ works }) => {
+const WorksInject: FC<{ works: Work[]; packages: Package[] }> = ({ works, packages }) => {
   const { view: grid, setView } = useViewStore();
   const [filter, setFilter] = useState<WorkType | 'all'>('all');
   const years = works.map((w) => w.year).filter(Boolean).sort();
@@ -82,6 +84,8 @@ const WorksInject: FC<{ works: Work[] }> = ({ works }) => {
         {/* Keyed so a new filter remounts the list and replays its reveal. */}
         <WorksList key={filter} works={shown} grid={grid} />
       </section>
+
+      {packages.length > 0 && <Packages packages={packages} />}
     </PageShell>
   );
 };

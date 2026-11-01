@@ -3,7 +3,8 @@ import type { Work } from './works';
 /**
  * Projects that aren't in Sanity yet, mostly from the resume. They are merged
  * with the Sanity works (Sanity wins on a matching title) and sorted by `date`.
- * Covers come from public/works/<slug>.jpg, or `phone` for mobile apps.
+ * Covers come from public/works/<slug>.jpg, or `phone` for mobile apps, whose
+ * screens live in public/works/screens (simulator captures, store and design assets).
  */
 export type Project = Pick<Work, 'title' | 'description' | 'roles' | 'stack' | 'link' | 'type'> & {
   /** Latest activity as YYYY-MM, used for sorting. */
@@ -24,7 +25,11 @@ export const projects: Project[] = [
       'A Nigerian payments app for iOS and Android that has processed over ₦1 billion. I built it end to end and run it in production: the Expo app, the Bun and MongoDB backend, the admin console with live support chat, a partner API with a typed SDK, and an MCP server that lets AI assistants draft transfers the account holder approves in the app.',
     stack: ['Expo', 'React Native', 'Bun', 'Express', 'MongoDB', 'Next.js'],
     link: null,
-    phone: { image: '/works/linkpay-icon.png', background: '#27394D' },
+    phone: {
+      screens: ['/works/screens/linkpay-1.jpg', '/works/screens/linkpay-2.jpg'],
+      image: '/works/linkpay-icon.png',
+      background: '#27394D',
+    },
   },
   {
     title: 'Ark',
@@ -37,7 +42,11 @@ export const projects: Project[] = [
       "World Street's app for money, trading, games and social. I architected it on Expo and React Native's New Architecture, built the crypto and naira money flows, live streaming with an iOS broadcast extension in Swift, and the release system behind its store builds and over-the-air updates.",
     stack: ['Expo', 'React Native', 'Privy', 'LiveKit', 'Swift', 'Bun'],
     link: null,
-    phone: { image: '/works/ark-icon.png', background: '#0A0B0D' },
+    phone: {
+      screens: ['/works/screens/ark-1.jpg', '/works/screens/ark-2.jpg'],
+      image: '/works/ark-icon.png',
+      background: '#0A0B0D',
+    },
   },
   {
     title: 'Utkast',
@@ -49,7 +58,12 @@ export const projects: Project[] = [
       'AI meeting notes for iOS and Android: live transcription with Deepgram, meeting summaries, notes and tasks, a people and company directory, and search across the whole workspace, on a typed API client generated from OpenAPI.',
     stack: ['Expo', 'React Native', 'Deepgram', 'OpenAPI', 'Jest'],
     link: null,
-    phone: { image: '/works/utkast-logo.png', background: '#EFEAE1', wordmark: true },
+    phone: {
+      screens: ['/works/screens/utkast-1.jpg', '/works/screens/utkast-2.jpg'],
+      image: '/works/utkast-logo.png',
+      background: '#EFEAE1',
+      wordmark: true,
+    },
   },
   {
     title: 'Ark Store',
@@ -73,7 +87,11 @@ export const projects: Project[] = [
       "The iOS and Android client for an AI app builder: a streamed build chat, live previews of what's being built, and publishing from your phone.",
     stack: ['Expo', 'Expo Router', 'React Native'],
     link: null,
-    phone: { image: '/works/vividbuild-icon.png', background: '#0A0B0D' },
+    phone: {
+      screens: ['/works/screens/vividbuild-1.jpg', '/works/screens/vividbuild-2.jpg'],
+      image: '/works/vividbuild-icon.png',
+      background: '#0A0B0D',
+    },
   },
   {
     title: 'Sheire',
@@ -170,7 +188,7 @@ export const projects: Project[] = [
       'A multi-chain mobile wallet for EVM and Solana with smart accounts and biometric security, plus the push-notification service that tells you when funds arrive while the app is closed.',
     stack: ['Expo', 'React Native', 'viem', 'Solana', 'Hono'],
     link: 'https://www.decane.app',
-    phone: { image: '/works/decane-icon.png', background: '#0D0D0D' },
+    phone: { screens: ['/works/screens/decane-1.jpg'], image: '/works/decane-icon.png', background: '#0D0D0D' },
   },
   {
     title: 'Dextopus',

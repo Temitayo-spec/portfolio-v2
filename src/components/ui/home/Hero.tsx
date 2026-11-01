@@ -6,6 +6,7 @@ import my_photo from '@/public/images/my_photo.jpeg';
 import { gsap } from '@/src/lib/gsap';
 import { useIntroStore } from '@/src/store/intro.store';
 import { site, yearsOfExperience } from '@/src/constants';
+import { published } from '@/src/lib/packages';
 import TopBar from '../../shared/TopBar';
 import SplitReveal from '../../shared/SplitReveal';
 import Mixed from '../../shared/Mixed';
@@ -88,6 +89,7 @@ const HeroSection = ({ projectCount }: { projectCount: number }) => {
     ['Stack', site.stack],
     ['Experience', `${yearsOfExperience()}+ years`],
     ['Projects shipped', `${projectCount}+`],
+    ['npm packages', String(published.length)],
     ['Based in', site.location],
     ['Local time', <LocalTime key="t" />],
     ['Availability', site.availability],
