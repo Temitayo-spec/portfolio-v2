@@ -1,6 +1,31 @@
 'use client';
 import { useState } from 'react';
 import { toast } from 'sonner';
+import { site } from '@/src/constants';
+import Roll from './Roll';
+
+const budgets = ['< $1k', '$1k – $5k', '$5k – $10k', '$10k+'];
+
+const Field = ({
+  label,
+  index,
+  children,
+}: {
+  label: string;
+  index: string;
+  children: React.ReactNode;
+}) => (
+  <label className="group block border-b border-line py-5 transition-colors focus-within:border-accent">
+    <span className="meta mb-3 flex gap-3 text-muted">
+      <span className="text-accent">{index}</span>
+      {label}
+    </span>
+    {children}
+  </label>
+);
+
+const inputClasses =
+  'w-full bg-transparent text-[clamp(1.25rem,2vw,1.75rem)] tracking-tight text-ink outline-none placeholder:text-muted/50';
 
 const Form = () => {
   const [loading, setLoading] = useState(false);
@@ -11,91 +36,111 @@ const Form = () => {
     budget: '',
   });
 
-  const handleSubmit = (e: { preventDefault: () => void }) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-
     const { inquirer_name, email, message } = values;
 
-    const sendMail = async () => {
-      if (!inquirer_name || !email || !message) {
-        toast.error('Fill necessary fields!');
-        return;
-      }
-      setLoading(true);
+    if (!inquirer_name || !email || !message) {
+      toast.error('Please fill in your name, email and message.');
+      return;
+    }
 
+    setLoading(true);
+    try {
       const res = await fetch('/api/sendmail', {
         method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(values),
       });
-
-      if (res && res.status === 200) {
-        setLoading(false);
-        toast.success('Sent succesfully!');
-        setValues({
-          inquirer_name: '',
-          email: '',
-          message: '',
-          budget: '',
-        });
+      // A 400 says what to fix (e.g. a mistyped email), so show that instead of the generic error.
+      if (res.status === 400) {
+        const { error } = await res.json().catch(() => ({ error: undefined }));
+        if (error) {
+          toast.error(error);
+          return;
+        }
       }
-    };
+      if (!res.ok) throw new Error(`sendmail responded ${res.status}`);
 
-    sendMail();
+      toast.success('Sent successfully! I will get back to you soon.');
+      setValues({ inquirer_name: '', email: '', message: '', budget: '' });
+    } catch {
+      toast.error(`Couldn't send that. Email me directly at ${site.email}.`);
+    } finally {
+      setLoading(false);
+    }
   };
 
-  const inputClasses =
-    "max-w-[48.9375rem] w-full p-7 max-md:p-6 border-b-[1.5px] border-b-[#D9D9D9] bg-[#353535] text-white font-spline-sans text-xl max-md:text-base font-normal leading-[100%] tracking-[0.0125rem] outline-none placeholder:text-white placeholder:text-xl placeholder:max-md:text-base placeholder:font-normal placeholder:leading-[100%] placeholder:tracking-[0.0125rem]";
-
   return (
-    <form onSubmit={handleSubmit} className="my-4 mb-16">
-      <div className="flex flex-col">
+    <form onSubmit={handleSubmit} noValidate>
+      <Field index="01" label="What's your name?">
         <input
           type="text"
           name="your_name"
-          id="your_name"
-          placeholder="Your name"
+          placeholder="Jane Doe"
           value={values.inquirer_name}
-          onChange={(e) =>
-            setValues({ ...values, inquirer_name: e.target.value })
-          }
+          onChange={(e) => setValues({ ...values, inquirer_name: e.target.value })}
           className={inputClasses}
         />
+      </Field>
 
+      <Field index="02" label="Your email">
         <input
           type="email"
           name="email"
-          id="email"
-          placeholder="Your email"
+          placeholder="jane@company.com"
           value={values.email}
           onChange={(e) => setValues({ ...values, email: e.target.value })}
           className={inputClasses}
         />
+      </Field>
 
+      <Field index="03" label="Tell me about your project">
         <textarea
-          placeholder="Tell me about your project or reason for reaching out"
+          name="message"
+          rows={4}
+          placeholder="Goals, timeline, links…"
           value={values.message}
           onChange={(e) => setValues({ ...values, message: e.target.value })}
-          className={`${inputClasses} h-40 resize-none`}
+          className={`${inputClasses} resize-none`}
         />
+      </Field>
 
-        <input
-          type="text"
-          name="budget"
-          id="budget"
-          placeholder="What's your budget?"
-          value={values.budget}
-          onChange={(e) => setValues({ ...values, budget: e.target.value })}
-          className={inputClasses}
-        />
+      <fieldset className="border-b border-line py-5">
+        <legend className="meta mb-4 flex gap-3 text-muted">
+          <span className="text-accent">04</span>
+          Budget
+        </legend>
+        <div className="flex flex-wrap gap-2">
+          {budgets.map((budget) => {
+            const selected = values.budget === budget;
+            return (
+              <button
+                key={budget}
+                type="button"
+                aria-pressed={selected}
+                onClick={() => setValues({ ...values, budget: selected ? '' : budget })}
+                className={`rounded-full border px-4 py-2 text-sm transition-colors duration-300 ${
+                  selected ? 'border-accent bg-accent text-ink' : 'border-line hover:border-ink'
+                }`}
+              >
+                {budget}
+              </button>
+            );
+          })}
+        </div>
+      </fieldset>
 
-        <button
-          type="submit"
-          disabled={loading}
-          className="flex max-w-96.75 py-[1.84375rem] max-md:py-[1.4rem] px-2 justify-center items-center gap-2 bg-[#353535] mt-6 border-none text-white font-spline-sans text-lg max-md:text-base font-normal cursor-pointer transition-all duration-400 ease-in-out hover:bg-white hover:text-[#353535] disabled:cursor-not-allowed disabled:opacity-50"
-        >
-          {loading ? 'Sending...' : 'Send'}
-        </button>
-      </div>
+      <button
+        type="submit"
+        disabled={loading}
+        className="group mt-10 inline-flex items-center gap-3 rounded-full bg-accent px-8 py-5 disabled:cursor-not-allowed disabled:opacity-50"
+      >
+        <span className="meta">
+          <Roll>{loading ? 'Sending…' : 'Send message'}</Roll>
+        </span>
+        <span aria-hidden className="transition-transform duration-500 group-hover:translate-x-1">→</span>
+      </button>
     </form>
   );
 };

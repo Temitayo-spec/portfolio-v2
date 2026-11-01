@@ -29,7 +29,22 @@ export type Works = {
   _updatedAt: string;
   _rev: string;
   project_title?: string;
+  type?: "mobile" | "web" | "backend";
+  cover?: {
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+    };
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    alt?: string;
+    _type: "image";
+  };
   brief_discussion?: string;
+  stack?: Array<string>;
   clients_collaborators?: Array<{
     _ref: string;
     _type: "reference";
@@ -45,6 +60,7 @@ export type Works = {
     [internalGroqTypeReferenceTo]?: "roles";
   }>;
   project__link?: string;
+  featured?: boolean;
   publishedAt?: string;
 };
 
@@ -179,7 +195,7 @@ export type AllSanitySchemaTypes = Roles | Works | Clients | SanityImagePaletteS
 export declare const internalGroqTypeReferenceTo: unique symbol;
 // Source: ./src/sanity/queries/index.ts
 // Variable: works
-// Query: *[_type == "works"]{  ...,  roles[]->,    clients_collaborators[]->} | order(publishedAt desc)
+// Query: *[_type == "works"]{  ...,  "coverUrl": cover.asset->url,  "coverLqip": cover.asset->metadata.lqip,  roles[]->,    clients_collaborators[]->} | order(publishedAt desc)
 export type WorksResult = Array<{
   _id: string;
   _type: "works";
@@ -187,7 +203,22 @@ export type WorksResult = Array<{
   _updatedAt: string;
   _rev: string;
   project_title?: string;
+  type?: "backend" | "mobile" | "web";
+  cover?: {
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+    };
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    alt?: string;
+    _type: "image";
+  };
   brief_discussion?: string;
+  stack?: Array<string>;
   clients_collaborators: Array<{
     _id: string;
     _type: "clients";
@@ -205,13 +236,16 @@ export type WorksResult = Array<{
     role_list?: string;
   }> | null;
   project__link?: string;
+  featured?: boolean;
   publishedAt?: string;
+  coverUrl: string | null;
+  coverLqip: string | null;
 }>;
 
 // Query TypeMap
 import "@sanity/client";
 declare module "@sanity/client" {
   interface SanityQueries {
-    "*[_type == \"works\"]{\n  ...,\n  roles[]->,\n    clients_collaborators[]->\n} | order(publishedAt desc)": WorksResult;
+    "*[_type == \"works\"]{\n  ...,\n  \"coverUrl\": cover.asset->url,\n  \"coverLqip\": cover.asset->metadata.lqip,\n  roles[]->,\n    clients_collaborators[]->\n} | order(publishedAt desc)": WorksResult;
   }
 }
