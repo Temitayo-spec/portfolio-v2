@@ -1,4 +1,4 @@
-import { defineField, defineType } from 'sanity';
+import { defineArrayMember, defineField, defineType } from 'sanity';
 
 export const worksType = defineType({
   name: 'works',
@@ -11,9 +11,47 @@ export const worksType = defineType({
       type: 'string',
     }),
     defineField({
+      name: 'type',
+      title: 'Type of project',
+      description: 'Used to filter the works page.',
+      type: 'string',
+      options: {
+        list: [
+          { title: 'Mobile app', value: 'mobile' },
+          { title: 'Website or web app', value: 'web' },
+          { title: 'Backend or tool', value: 'backend' },
+        ],
+        layout: 'radio',
+      },
+      initialValue: 'web',
+    }),
+    defineField({
+      name: 'cover',
+      title: 'Cover image',
+      description:
+        'Shown in the works carousel and list hover. A 16:10 screenshot works best.',
+      type: 'image',
+      options: { hotspot: true },
+      fields: [
+        defineField({
+          name: 'alt',
+          title: 'Alternative text',
+          type: 'string',
+        }),
+      ],
+    }),
+    defineField({
       name: 'brief_discussion',
       title: 'Brief discussion on the project',
       type: 'text',
+    }),
+    defineField({
+      name: 'stack',
+      title: 'Tech stack',
+      description: 'e.g. Next.js, Sanity, GSAP',
+      type: 'array',
+      of: [defineArrayMember({ type: 'string' })],
+      options: { layout: 'tags' },
     }),
     defineField({
       name: 'clients_collaborators',
@@ -33,6 +71,14 @@ export const worksType = defineType({
       type: 'url',
     }),
     defineField({
+      name: 'featured',
+      title: 'Feature on home page',
+      description:
+        'Featured works lead the home page carousel. If none are featured, the latest works are shown.',
+      type: 'boolean',
+      initialValue: false,
+    }),
+    defineField({
       name: 'publishedAt',
       title: 'Published at',
       type: 'datetime',
@@ -42,10 +88,11 @@ export const worksType = defineType({
   preview: {
     select: {
       title: 'project_title',
+      media: 'cover',
     },
     prepare(selection) {
-      const { title } = selection;
-      return { ...selection, title };
+      const { title, media } = selection;
+      return { title, media };
     },
   },
 });

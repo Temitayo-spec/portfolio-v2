@@ -1,24 +1,17 @@
-import Header from '../../shared/Header';
-import HeroSection from './HeroSection';
-import BriefAboutSection from './BriefSection';
-import WorksSection from './WorksSection';
 import { FC } from 'react';
-import { WorksResult } from '@/sanity.types';
-import ContactSection from './ContactSection';
-import Footer from '../../shared/Footer';
+import type { Work } from '@/src/lib/works';
+import PageShell from '../../shared/PageShell';
+import HeroSection from './Hero';
+import Statement from './Statement';
+import WorksCarousel from './WorksCarousel';
 
-const HomeInject: FC<{ projects: WorksResult }> = ({ projects }) => {
+const HomeInject: FC<{ featured: Work[]; total: number }> = ({ featured, total }) => {
   return (
-    <main>
-      <main>
-        <Header />
-        <HeroSection />
-        <BriefAboutSection />
-        <WorksSection projects={projects} />
-        <ContactSection />
-      </main>
-      <Footer />
-    </main>
+    <PageShell>
+      <HeroSection projectCount={total} />
+      <Statement />
+      <WorksCarousel works={featured} total={total} />
+    </PageShell>
   );
 };
 

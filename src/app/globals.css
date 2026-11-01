@@ -1,36 +1,174 @@
 @import 'tailwindcss';
 
 :root {
-  --background-color: #212121;
-  --font-spline-sans: var(--font-spline-sans);
-  --font-bebas-neue: var(--font-bebas-neue);
+  --bg: #0b0b0b;
+  --bg-soft: #141414;
+  --ink: #ece7df;
+  --muted: #8b867e;
+  --line: rgba(236, 231, 223, 0.14);
+  --accent: #d7263d;
+  --accent-soft: #ff5a6a;
+
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out-quart: cubic-bezier(0.76, 0, 0.24, 1);
 }
 
 @theme inline {
-  --color-main-bg: var(--background-color);
+  --color-bg: var(--bg);
+  --color-bg-soft: var(--bg-soft);
+  --color-ink: var(--ink);
+  --color-muted: var(--muted);
+  --color-line: var(--line);
+  --color-accent: var(--accent);
+  --color-accent-soft: var(--accent-soft);
 
-  --font-spline-sans: var(--font-spline-sans);
-  --font-bebas-neue: var(--font-bebas-neue);
+  --font-sans: var(--font-inter-tight), ui-sans-serif, system-ui, sans-serif;
+  --font-serif: var(--font-instrument-serif), ui-serif, Georgia, serif;
+  --font-mono: var(--font-jetbrains-mono), ui-monospace, monospace;
+
+  --ease-out-expo: var(--ease-out-expo);
+  --ease-in-out-quart: var(--ease-in-out-quart);
 }
 
-.wrapper {
-  @apply max-w-[1440px] w-[90%] mx-auto;
+@layer base {
+  html {
+    background: var(--bg);
+    color: var(--ink);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    @apply font-sans;
+    max-width: 100vw;
+    overflow-x: clip;
+    background: var(--bg);
+  }
+
+  ::selection {
+    background: var(--accent);
+    color: var(--ink);
+  }
 }
 
-html,
-body {
-  max-width: 100vw;
-  font-family: var(--font-spline-sans);
+/* Layered so Tailwind utilities (e.g. leading-*, text-*) can override them per use. */
+@layer components {
+  .wrapper {
+    @apply mx-auto w-full px-5 md:px-8;
+  }
+
+  /* Small uppercase label used for section meta and data rows. */
+  .meta {
+    @apply font-mono text-[0.6875rem] leading-[1.3] tracking-[0.04em] uppercase;
+  }
+
+  /* Giant display type. Sizes are set per use with clamp/vw. */
+  .display {
+    @apply font-sans leading-[0.82] font-normal tracking-[-0.055em] uppercase;
+  }
+
+  /* Serif italic letters mixed into sans words, see <Mixed />.
+     Uses the utility because inline theme fonts are not emitted as variables. */
+  .serif-swap {
+    @apply font-serif;
+    font-style: italic;
+    font-weight: 400;
+    letter-spacing: -0.02em;
+  }
+}
+
+/* Text hidden until GSAP has split it, to avoid a flash before the reveal. */
+.split-pending {
+  visibility: hidden;
+}
+
+/* SplitText line masks clip at the line box, which cuts tall serif glyphs and
+   italic overhang. A negative clip-path inset grows the mask without moving text. */
+[class*='line-mask'] {
+  overflow: visible !important;
+  clip-path: inset(-0.14em -0.3em);
+}
+
+/* Hover text roll: two stacked copies, the second slides in from below.
+   Clipped vertically only, so italic overhang shows, and padded (offset by a
+   negative margin) so ascenders and descenders outside the line box aren't cut. */
+.roll {
+  position: relative;
+  display: inline-flex;
+  overflow-x: visible;
+  overflow-y: clip;
+  vertical-align: top;
+  margin-block: -0.18em;
+}
+.roll > span {
+  display: block;
+  padding-block: 0.18em;
+  transition: transform 0.6s var(--ease-out-expo);
+}
+.roll > span:last-child {
+  position: absolute;
+  inset: 0;
+  transform: translateY(105%);
+}
+.group:hover .roll > span:first-child,
+.roll:hover > span:first-child {
+  transform: translateY(-105%);
+}
+.group:hover .roll > span:last-child,
+.roll:hover > span:last-child {
+  transform: translateY(0);
+}
+
+/* Underline that wipes in from the left and out to the right. */
+.wipe-line {
+  background-image: linear-gradient(currentColor, currentColor);
+  background-size: 0% 1px;
+  background-position: 100% 100%;
+  background-repeat: no-repeat;
+  transition: background-size 0.7s var(--ease-out-expo);
+}
+.wipe-line:hover,
+.group:hover .wipe-line {
+  background-size: 100% 1px;
+  background-position: 0% 100%;
+}
+
+/* The custom cursor replaces the native one on fine pointers only. */
+@media (pointer: fine) {
+  html.has-cursor,
+  html.has-cursor a,
+  html.has-cursor button,
+  html.has-cursor [data-cursor] {
+    cursor: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
 }
 
 ::-webkit-scrollbar {
   width: 4px;
 }
-
 ::-webkit-scrollbar-thumb {
-  background: #fff;
+  background: var(--accent);
+}
+::-webkit-scrollbar-track {
+  background: var(--bg);
 }
 
-::-webkit-scrollbar-track {
-  background: var(--background-color);
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+.lenis.lenis-stopped {
+  overflow: clip;
 }

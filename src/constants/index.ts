@@ -1,91 +1,43 @@
-import { Variants } from 'framer-motion';
+export const site = {
+  name: 'Temitayo Olawanle',
+  shortName: 'Temitayo',
+  role: 'Mobile & Full-Stack Engineer',
+  tagline:
+    'I build mobile apps and the web products around them, end to end, and sweat every pixel and frame.',
+  email: 'olawanletemitayo@gmail.com',
+  location: 'Lagos, Nigeria',
+  timeZone: 'Africa/Lagos',
+  timeZoneLabel: 'WAT',
+  // Years of experience are counted from this year.
+  careerStart: 2021,
+  availability: 'Open to new projects',
+  services: 'Mobile apps / Web apps / Backends',
+  stack: 'React Native / Expo / Next.js / Node',
+  resume: '/Olawanle_Temitayo_Resume.pdf',
+} as const;
 
-export const sideMenuVariants: Variants = {
-  hidden: {
-    scaleY: 0,
-    transition: {
-      duration: 1.2,
-      ease: [0.83, 0, 0.17, 1],
-      type: 'tween',
-      delay: 0.5, // Delay menu close until links exit
-    },
-  },
-  visible: {
-    scaleY: 1,
-    transition: {
-      duration: 1.2,
-      ease: [0.83, 0, 0.17, 1],
-      type: 'tween',
-    },
-  },
-};
+export const yearsOfExperience = () =>
+  new Date().getFullYear() - site.careerStart;
 
-export const linkContainer: Variants = {
-  hidden: {
-    transition: {
-      duration: 0.8,
-      staggerChildren: 0.05,
-      staggerDirection: -1, // Reverse stagger on exit (bottom to top)
-    },
-  },
-  visible: {
-    transition: {
-      duration: 0.8,
-      delayChildren: 0.5, // Wait for menu to open before animating links
-      staggerChildren: 0.08, // Slightly longer stagger for better sequencing
-    },
-  },
-};
-
-export const linkVariants: Variants = {
-  hidden: {
-    y: 140, // Use y transform instead of bottom for smoother animation
-    transition: {
-      duration: 0.6,
-      ease: [0.83, 0, 0.17, 1],
-      type: 'tween',
-    },
-  },
-  visible: {
-    y: 0,
-    transition: {
-      duration: 1.2,
-      ease: [0.83, 0, 0.17, 1],
-      type: 'tween',
-    },
-  },
-};
+// Project types, as labels for the works filter and cards.
+export const workTypes = {
+  mobile: 'Mobile app',
+  web: 'Web',
+  backend: 'Backend & tools',
+} as const;
 
 export const links = [
-  {
-    title: 'Home',
-    url: '/',
-  },
-  {
-    title: 'About',
-    url: '/about',
-  },
-  {
-    title: 'Works',
-    url: '/works',
-  },
-  {
-    title: 'Contact',
-    url: '/contact',
-  },
+  { title: 'Home', url: '/' },
+  { title: 'Works', url: '/works' },
+  { title: 'About', url: '/about' },
+  { title: 'Contact', url: '/contact' },
 ] as const;
 
 export const socialLinks = [
-  {
-    title: 'github',
-    url: 'https://github.com/Temitayo-spec',
-  },
-  {
-    title: 'twitter',
-    url: 'https://twitter.com/OlawanleTemita1',
-  },
-  {
-    title: 'linkedin',
-    url: 'https://www.linkedin.com/in/temitayo-spec/',
-  },
+  { title: 'GitHub', url: 'https://github.com/Temitayo-spec' },
+  { title: 'LinkedIn', url: 'https://www.linkedin.com/in/temitayo-spec/' },
+  { title: 'Twitter / X', url: 'https://twitter.com/OlawanleTemita1' },
 ] as const;
+
+export const easeOutExpo = [0.16, 1, 0.3, 1] as const;
+export const easeInOutQuart = [0.76, 0, 0.24, 1] as const;
