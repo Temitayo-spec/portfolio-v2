@@ -23,7 +23,6 @@ export type Work = {
   cover: string | null;
   coverAlt: string;
   coverBlur: string | null;
-  /** Phone mockup for mobile apps without a cover: a splash colour and an icon or wordmark. */
   /** Mobile apps: real screens (front first, at most two), else the icon on its splash colour. */
   phone: { screens?: string[]; image?: string; background: string; wordmark?: boolean } | null;
   featured: boolean;
@@ -41,10 +40,14 @@ const fallbackCover = (slug: string) =>
     ? `/works/${slug}.jpg`
     : null;
 
-// Works kept in Sanity but left off the site because their live sites are gone.
+// Works left off the site because they're no longer live or active, by Sanity id or `local-<slug>`.
 const hiddenWorks = new Set([
   '64288993-a0d3-4e3f-8696-ef63de7e660e', // Strategic Solutions: domain now serves spam
   'a0c8d2ca-eaf0-45d6-9cd9-48b5ffa1473c', // Leadhership Gala: domain no longer resolves
+  'local-anchor', // Backend suspended on Render, so nobody can sign in
+  'local-flybirdie', // flybirdie.io no longer resolves
+  'local-debt-sync', // Never released; untouched since April 2026
+  'local-focuspair', // Never released; untouched since June 2026
 ]);
 
 export async function getWorks(): Promise<Work[]> {
@@ -80,7 +83,7 @@ export async function getWorks(): Promise<Work[]> {
   const taken = new Set(fromSanity.map((w) => w.slug));
   const local = projects.flatMap((project): Work[] => {
     const slug = slugify(project.title);
-    if (taken.has(slug)) return [];
+    if (taken.has(slug) || hiddenWorks.has(`local-${slug}`)) return [];
     return [
       {
         ...project,
