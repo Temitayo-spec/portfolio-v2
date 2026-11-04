@@ -355,6 +355,23 @@
   font-size: 12.8vw;
 }
 
+/* These faces sit low in their line, so the footer's edge would cut the name on a phone. */
+@media (max-width: 767px) {
+  [data-look='sumi'] footer p.display,
+  [data-look='kiwami'] footer p.display {
+    line-height: 1;
+  }
+}
+
+/* iPhone Safari leaves that edge in view above its toolbar and sets these faces lower still. */
+@supports (-webkit-touch-callout: none) {
+  @media (max-width: 767px) {
+    footer p.display {
+      padding-bottom: 0.2em;
+    }
+  }
+}
+
 [data-look='kiwami'] .display[class*='27vw'] {
   font-size: 20.6vw;
 }

@@ -209,7 +209,7 @@ const HeroSection = ({ projectCount }: { projectCount: number }) => {
           >
             <Mixed text="*O*lawanle" />
           </SplitReveal>
-          <Bandage loose className="only-kiwami absolute top-[25%] -left-[6vw] h-[max(3.2vw,1.25rem)] md:top-[33%] w-[118vw] -rotate-[1.8deg] text-[max(1.5vw,0.625rem)]" />
+          <Bandage loose className="only-kiwami absolute top-[25%] -left-[6vw] h-[max(3.2vw,1.25rem)] min-[600px]:top-[29%] md:top-[33%] w-[118vw] -rotate-[1.8deg] text-[max(1.5vw,0.625rem)]" />
         </h1>
       </div>
 

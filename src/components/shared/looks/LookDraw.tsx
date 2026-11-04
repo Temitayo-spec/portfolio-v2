@@ -29,6 +29,22 @@ const choose = (look: (typeof looks)[number]) => {
   document.fonts.ready.then(() => ScrollTrigger.refresh());
 };
 
+/**
+ * Safari reads its bar colour off these strips once, so a new look needs new ones. They take
+ * the bar colour directly: the page's own colours are still crossfading when these are made.
+ */
+export const EdgeGuards = () => {
+  const look = useLook();
+  const background = looks.find((l) => l.id === look)?.bar;
+
+  return (
+    <>
+      <div key={`top-${look}`} aria-hidden className="edge-guard top-0" style={{ background }} />
+      <div key={`bottom-${look}`} aria-hidden className="edge-guard bottom-0" style={{ background }} />
+    </>
+  );
+};
+
 /** The three looks as buttons, for the draw chip and the footer. */
 export const LookOptions = ({ className = '' }: { className?: string }) => {
   const current = useLook();
