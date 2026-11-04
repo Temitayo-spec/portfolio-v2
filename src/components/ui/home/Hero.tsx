@@ -146,8 +146,8 @@ const HeroSection = ({ projectCount }: { projectCount: number }) => {
 
       <div data-first-screen className="relative flex min-h-[88svh] flex-col md:min-h-[100svh]">
         {/* Phones have no pinned stage, so the first screen carries each look's art. */}
-        <div aria-hidden className="look-only absolute inset-0 overflow-hidden md:hidden">
-          <div className="only-tsuki moon top-[45%] left-1/2 w-[94vw] -translate-x-1/2" />
+        <div aria-hidden className="look-only absolute inset-0 overflow-x-clip md:hidden">
+          <div className="only-tsuki moon top-[45%] left-1/2 w-[min(94vw,46svh)] -translate-x-1/2" />
           <div className="only-kiwami speed-lines" />
           <div className="only-sumi absolute top-[41.5%] right-[7vw] aspect-square w-[43vw]">
             <Backdrop />
