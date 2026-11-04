@@ -70,12 +70,11 @@ export const Bandage = ({ className = '', loose = false }: { className?: string;
   </div>
 );
 
-/** What sits behind the figure in each look. */
-export const Backdrop = ({ sizes }: { sizes: string }) => (
-  <>
-    <Image src="/looks/enso.webp" alt="" fill sizes={sizes} className="only-sumi object-contain" />
-  </>
-);
+/**
+ * The ensō behind the figure in Sumi. Served as is: re-encoding its fine brush
+ * texture makes it nearly three times larger, and every size can share one file.
+ */
+export const Backdrop = () => <Image src="/looks/enso.webp" alt="" fill unoptimized className="only-sumi object-contain" />;
 
 /**
  * The cut-out portrait, one treatment per look. These stay lazy on purpose:
@@ -99,7 +98,7 @@ export const LookPanel = ({ sizes }: { sizes: string }) => (
     <div className="only-tsuki moon top-[8%] left-1/2 w-[78%] -translate-x-1/2" />
     <div className="only-kiwami speed-lines" />
     <div className="absolute inset-x-[4%] top-[2%] aspect-square">
-      <Backdrop sizes={sizes} />
+      <Backdrop />
     </div>
     <div className="absolute inset-x-0 bottom-0 aspect-square">
       <Figure sizes={sizes} />

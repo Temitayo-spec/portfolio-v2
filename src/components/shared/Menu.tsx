@@ -71,7 +71,7 @@ const Menu = () => {
                       <span className="only-base meta mt-[1.2em] text-muted transition-colors group-hover:text-accent">
                         0{i + 1}
                       </span>
-                      <span aria-hidden lang="ja" className="look-only tate jp mt-[0.6em] text-sm leading-none text-accent md:text-lg">
+                      <span aria-hidden lang="ja" className="look-only tate jp absolute top-1/2 right-full mr-2 -translate-y-1/2 text-[0.625rem] leading-none text-accent md:mr-3 md:text-lg">
                         {link.jp}
                       </span>
                       <span className="roll display text-[clamp(3.25rem,10vw,9.5rem)]">
@@ -93,7 +93,7 @@ const Menu = () => {
             animate={{ opacity: 1, y: 0, transition: { delay: 0.8, duration: 0.8, ease: easeOutExpo } }}
             exit={{ opacity: 0, transition: { duration: 0.2 } }}
           >
-            <div className="meta flex flex-col gap-1">
+            <div className="meta col-span-2 flex flex-col gap-1 md:col-span-1">
               <span className="text-muted">Email</span>
               <a href={`mailto:${site.email}`} className="wipe-line w-fit">
                 {site.email}

@@ -1,7 +1,8 @@
 'use client';
 import { useEffect, useState, useSyncExternalStore } from 'react';
+import { usePathname } from 'next/navigation';
 import { ScrollTrigger } from '@/src/lib/gsap';
-import { looks, lookKey, type Look } from '@/src/lib/looks';
+import { looks, lookKey, setBar } from '@/src/lib/looks';
 import { useIntroStore } from '@/src/store/intro.store';
 import { useSidebarStore } from '@/src/store/sidebar.store';
 
@@ -18,10 +19,11 @@ const useLook = () =>
     () => undefined
   );
 
-const choose = (look: Look) => {
-  document.documentElement.dataset.look = look;
+const choose = (look: (typeof looks)[number]) => {
+  document.documentElement.dataset.look = look.id;
+  setBar(look.bar);
   try {
-    localStorage.setItem(lookKey, look);
+    localStorage.setItem(lookKey, look.id);
   } catch {}
   // Each look has its own type, so measured scroll ranges change with it.
   document.fonts.ready.then(() => ScrollTrigger.refresh());
@@ -39,7 +41,7 @@ export const LookOptions = ({ className = '' }: { className?: string }) => {
           type="button"
           aria-pressed={current === look.id}
           aria-label={`${look.label}: ${look.meaning}`}
-          onClick={() => choose(look.id)}
+          onClick={() => choose(look)}
           className={`flex h-9 min-w-11 items-center justify-center gap-1.5 rounded-full px-3 transition-colors duration-300 ${
             current === look.id ? 'bg-accent' : 'text-muted hover:text-ink'
           }`}
@@ -54,11 +56,15 @@ export const LookOptions = ({ className = '' }: { className?: string }) => {
   );
 };
 
-/** Tells visitors which look they drew and offers the others. Leaves once the page is scrolled. */
+/**
+ * Tells visitors which look they drew and offers the others. Home only, and it
+ * leaves once the page is scrolled; the footer offers the same switch everywhere.
+ */
 const LookDraw = () => {
   const current = useLook();
   const introDone = useIntroStore((s) => s.done);
   const sidebar = useSidebarStore((s) => s.sidebar);
+  const home = usePathname() === '/';
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
@@ -72,11 +78,11 @@ const LookDraw = () => {
   const drawn = looks.find((look) => look.id === current);
   if (!drawn) return null;
 
-  const shown = introDone && !scrolled && !sidebar;
+  const shown = home && introDone && !scrolled && !sidebar;
 
   return (
     <div
-      className={`meta fixed bottom-20 left-1/2 z-[140] flex w-max max-w-[calc(100vw-2rem)] -translate-x-1/2 flex-wrap items-center justify-center gap-0.5 rounded-[22px] border border-line bg-bg/85 p-1 backdrop-blur-md transition-[opacity,visibility] duration-500 md:bottom-5 ${
+      className={`meta fixed bottom-20 left-1/2 z-[140] flex w-max max-w-[calc(100vw-2rem)] -translate-x-1/2 flex-wrap items-center justify-center gap-0.5 rounded-[22px] border border-line bg-bg/85 p-1 backdrop-blur-md transition-[opacity,visibility] duration-500 md:bottom-5 [@media(max-height:480px)]:hidden ${
         shown ? 'visible opacity-100' : 'invisible opacity-0'
       }`}
     >

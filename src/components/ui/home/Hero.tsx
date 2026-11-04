@@ -129,7 +129,7 @@ const HeroSection = ({ projectCount }: { projectCount: number }) => {
           </div>
           <div className="only-kiwami speed-lines" />
           <div className="only-sumi absolute top-[3%] left-[59%] aspect-square h-[76svh] -translate-x-1/2">
-            <Backdrop sizes="74vh" />
+            <Backdrop />
           </div>
           <div
             data-portrait
@@ -147,10 +147,10 @@ const HeroSection = ({ projectCount }: { projectCount: number }) => {
       <div data-first-screen className="relative flex min-h-[88svh] flex-col md:min-h-[100svh]">
         {/* Phones have no pinned stage, so the first screen carries each look's art. */}
         <div aria-hidden className="look-only absolute inset-0 overflow-hidden md:hidden">
-          <div className="only-tsuki moon top-[40%] left-1/2 w-[112vw] -translate-x-1/2" />
+          <div className="only-tsuki moon top-[45%] left-1/2 w-[94vw] -translate-x-1/2" />
           <div className="only-kiwami speed-lines" />
-          <div className="only-sumi absolute top-[41%] right-[7vw] aspect-square w-[50vw]">
-            <Backdrop sizes="50vw" />
+          <div className="only-sumi absolute top-[41.5%] right-[7vw] aspect-square w-[43vw]">
+            <Backdrop />
           </div>
         </div>
         <TopBar />
@@ -209,7 +209,7 @@ const HeroSection = ({ projectCount }: { projectCount: number }) => {
           >
             <Mixed text="*O*lawanle" />
           </SplitReveal>
-          <Bandage loose className="only-kiwami absolute top-[19%] -left-[6vw] h-[max(3.2vw,1.25rem)] md:top-[33%] w-[118vw] -rotate-[1.8deg] text-[max(1.5vw,0.625rem)]" />
+          <Bandage loose className="only-kiwami absolute top-[25%] -left-[6vw] h-[max(3.2vw,1.25rem)] md:top-[33%] w-[118vw] -rotate-[1.8deg] text-[max(1.5vw,0.625rem)]" />
         </h1>
       </div>
 

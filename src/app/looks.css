@@ -24,10 +24,30 @@
   color: var(--on-accent);
 }
 
+/* iOS Safari colours its bars from whatever fixed element touches the screen edge, and
+   keeps the first colour it sees. Page transitions cover those edges, so these hold the
+   look's own background there instead. They sit behind Safari's bars, out of sight. */
+.edge-guard {
+  display: none;
+}
+
+@supports (-webkit-touch-callout: none) {
+  .edge-guard {
+    display: block;
+    position: fixed;
+    inset-inline: 0;
+    z-index: 199;
+    height: 6px;
+    background: var(--bg);
+    pointer-events: none;
+  }
+}
+
 /* Vertical Japanese setting. */
 .tate {
   writing-mode: vertical-rl;
   text-orientation: upright;
+  white-space: nowrap;
 }
 
 .jp {
@@ -68,7 +88,7 @@
 /* The large vertical kanji beside each page title. */
 .page-kanji {
   position: absolute;
-  top: 8vh;
+  top: max(8vh, 3.75rem);
   right: 1.25rem;
   font-size: clamp(1.5rem, 3.4vw, 3.75rem);
   line-height: 1.05;
@@ -382,6 +402,11 @@
 [data-look='kiwami'] [data-wordmark] .text-accent,
 [data-look='kiwami'] [data-wordmark] .serif-swap {
   color: #c4122b;
+}
+
+/* Gothic this heavy closes up at seal size, so the seal keeps the brush face. */
+[data-look='kiwami'] .hanko {
+  font-family: var(--font-yuji), serif;
 }
 
 /* Red on this grey is too faint for text, so text accents go a shade deeper. */

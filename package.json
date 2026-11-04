@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "node scripts/fonts.mjs --check && next build",
+    "fonts": "node scripts/fonts.mjs",
     "start": "next start",
     "lint": "eslint"
   },
