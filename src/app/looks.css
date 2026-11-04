@@ -254,10 +254,13 @@
   opacity: 0.8;
 }
 
-/* On phones the name sits on the moon, where red would vanish. */
+/* On phones the name sits on the moon, where red would vanish. Short screens leave its ends
+   on the dark, so a moon-red outline holds them: it melts into the moon and shows only there. */
 @media (max-width: 767px) {
   [data-look='tsuki'] [data-wordmark] .text-accent {
     color: #070506;
+    -webkit-text-stroke: 0.04em #d90f2a;
+    paint-order: stroke fill;
   }
 }
 
@@ -354,6 +357,13 @@
 
 [data-look='kiwami'] .display[class*='27vw'] {
   font-size: 20.6vw;
+}
+
+/* The loader's name runs off both edges of a phone at its usual size. */
+@media (max-width: 767px) {
+  [data-look='kiwami'] .display[class*='16vw'] {
+    font-size: 13vw;
+  }
 }
 
 [data-look='kiwami'] .display[class*='24vw'] {

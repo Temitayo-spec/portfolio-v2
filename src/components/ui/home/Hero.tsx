@@ -149,7 +149,7 @@ const HeroSection = ({ projectCount }: { projectCount: number }) => {
         <div aria-hidden className="look-only absolute inset-0 overflow-x-clip md:hidden">
           <div className="only-tsuki moon top-[45%] left-1/2 w-[min(94vw,46svh)] -translate-x-1/2" />
           <div className="only-kiwami speed-lines" />
-          <div className="only-sumi absolute top-[41.5%] right-[7vw] aspect-square w-[43vw]">
+          <div className="only-sumi absolute top-[41.5%] right-[7vw] aspect-square w-[43vw] max-[374px]:top-[44%]">
             <Backdrop />
           </div>
         </div>
