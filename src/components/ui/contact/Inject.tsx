@@ -5,11 +5,13 @@ import SplitReveal from '../../shared/SplitReveal';
 import Mixed from '../../shared/Mixed';
 import LocalTime from '../../shared/LocalTime';
 import Form from '../../shared/ContactForm';
+import { PageKanji } from '../../shared/looks/Art';
 
 const ContactInject = () => {
   return (
     <PageShell>
       <TopBar />
+      <PageKanji>連絡先</PageKanji>
 
       <section className="wrapper pt-[16vh] md:pt-[20vh]">
         <SplitReveal on="intro" className="meta mb-6 text-muted">

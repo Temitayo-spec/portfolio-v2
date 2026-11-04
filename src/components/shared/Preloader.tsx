@@ -3,6 +3,7 @@ import { useLayoutEffect, useRef, useState } from 'react';
 import { gsap } from '@/src/lib/gsap';
 import { useIntroStore } from '@/src/store/intro.store';
 import { site } from '@/src/constants';
+import { looks } from '@/src/lib/looks';
 
 const SEEN_KEY = 'intro-seen';
 
@@ -62,6 +63,7 @@ const Preloader = () => {
           0
         )
         .to('[data-pre-bar]', { scaleX: 1, duration: 1.8, ease: 'power2.inOut' }, 0)
+        .from('[data-pre-look]', { opacity: 0, y: 24, duration: 0.8, ease: 'expo.out' }, 0.9)
         .to('[data-pre-char]', {
           yPercent: -130,
           duration: 0.7,
@@ -107,7 +109,15 @@ const Preloader = () => {
 
       <div>
         <div className="mb-4 flex items-end justify-between">
-          <span className="meta text-muted">Loading experience</span>
+          <span className="only-base meta text-muted">Loading experience</span>
+          <span data-pre-look className="look-only meta flex flex-col gap-3 text-muted">
+            You drew
+            {looks.map((look) => (
+              <span key={look.id} lang="ja" className={`only-${look.id} jp text-5xl leading-none text-accent md:text-7xl`}>
+                {look.mark}
+              </span>
+            ))}
+          </span>
           <span ref={counter} className="font-mono text-5xl tabular-nums md:text-7xl">
             000
           </span>

@@ -27,10 +27,10 @@ export const workTypes = {
 } as const;
 
 export const links = [
-  { title: 'Home', url: '/' },
-  { title: 'Works', url: '/works' },
-  { title: 'About', url: '/about' },
-  { title: 'Contact', url: '/contact' },
+  { title: 'Home', url: '/', jp: 'ホーム' },
+  { title: 'Works', url: '/works', jp: '作品' },
+  { title: 'About', url: '/about', jp: '自己紹介' },
+  { title: 'Contact', url: '/contact', jp: '連絡先' },
 ] as const;
 
 export const socialLinks = [

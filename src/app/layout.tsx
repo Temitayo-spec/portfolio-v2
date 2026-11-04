@@ -1,8 +1,11 @@
 import type { Metadata } from 'next';
 import { Inter_Tight, Instrument_Serif, JetBrains_Mono } from 'next/font/google';
 import './globals.css';
+import './look-fonts.css';
+import './looks.css';
 import { SanityLive } from '../sanity/lib/live';
 import { site } from '../constants';
+import { lookBoot } from '../lib/looks';
 
 const interTight = Inter_Tight({
   variable: '--font-inter-tight',
@@ -33,7 +36,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" data-look="base" suppressHydrationWarning>
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: lookBoot }} />
+      </head>
       <body
         className={`${interTight.variable} ${instrumentSerif.variable} ${jetbrainsMono.variable} antialiased`}
       >

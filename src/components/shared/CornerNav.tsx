@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { useSidebarStore } from '@/src/store/sidebar.store';
 import { useIntroStore } from '@/src/store/intro.store';
 import Roll from './Roll';
+import { Hanko } from './looks/Art';
 
 /**
  * Monogram and menu buttons. They rest in the bottom corners on the first
@@ -38,9 +39,10 @@ const CornerNav = () => {
         className="group fixed top-5 left-5 z-[100] flex size-11 items-center justify-center rounded-[10px] border border-line bg-bg/70 backdrop-blur-md transition-colors duration-300 hover:border-accent md:left-8"
         style={position}
       >
-        <span className="relative font-sans text-xl leading-none font-medium tracking-tight">
+        <span className="only-base relative font-sans text-xl leading-none font-medium tracking-tight">
           T<span className="serif-swap text-accent">o</span>
         </span>
+        <Hanko className="look-only size-8 text-lg" />
       </Link>
 
       <button

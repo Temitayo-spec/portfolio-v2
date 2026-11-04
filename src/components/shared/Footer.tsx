@@ -9,6 +9,8 @@ import Mixed from './Mixed';
 import Magnetic from './Magnetic';
 import LocalTime from './LocalTime';
 import Roll from './Roll';
+import { Bandage } from './looks/Art';
+import { LookOptions } from './looks/LookDraw';
 
 /**
  * Footer revealed from under the page (the page above has a rounded bottom
@@ -58,11 +60,18 @@ const Footer = () => {
         <div
           ref={glow}
           aria-hidden
-          className="pointer-events-none absolute -bottom-[30vh] left-1/2 h-[80vh] w-[90vw] -translate-x-1/2 rounded-full opacity-80 blur-[60px]"
+          className="only-base pointer-events-none absolute -bottom-[30vh] left-1/2 h-[80vh] w-[90vw] -translate-x-1/2 rounded-full opacity-80 blur-[60px]"
           style={{
             background:
               'radial-gradient(closest-side, color-mix(in srgb, var(--accent) 85%, transparent), transparent)',
           }}
+        />
+
+        <div aria-hidden className="only-tsuki moon -top-[34vh] -right-[10vw] w-[min(90vh,70vw)]" />
+        <Bandage className="only-kiwami absolute top-[8vh] -left-[4vw] h-14 w-[108vw] -rotate-[1.4deg] text-xl md:h-20 md:text-3xl" />
+        <div
+          aria-hidden
+          className="only-sumi pointer-events-none absolute top-[9vh] -left-[6vw] h-[11vh] w-[112vw] bg-[url('/looks/stroke.webp')] bg-[length:100%_100%]"
         />
 
         <div className="wrapper relative mt-auto mb-auto flex flex-col gap-10 pt-24 md:flex-row md:items-end md:justify-between">
@@ -108,6 +117,8 @@ const Footer = () => {
             <span>
               {site.location} · <LocalTime />
             </span>
+            <span className="look-only mt-3 text-muted">This site comes in three looks</span>
+            <LookOptions className="look-only -ml-3" />
           </div>
           <div className="meta flex flex-col gap-1">
             <span className="text-muted">Socials</span>

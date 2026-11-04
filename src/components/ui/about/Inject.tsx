@@ -8,6 +8,7 @@ import { useIntroStore } from '@/src/store/intro.store';
 import { site, yearsOfExperience } from '@/src/constants';
 import PageShell from '../../shared/PageShell';
 import TopBar from '../../shared/TopBar';
+import { LookPanel, PageKanji } from '../../shared/looks/Art';
 import SplitReveal from '../../shared/SplitReveal';
 import ScrubText from '../../shared/ScrubText';
 import Mixed from '../../shared/Mixed';
@@ -139,6 +140,7 @@ const AboutInject = () => {
     <PageShell>
       <div ref={root}>
         <TopBar />
+        <PageKanji>自己紹介</PageKanji>
 
         <section className="wrapper grid grid-cols-12 gap-y-10 pt-[16vh] md:pt-[20vh]">
           <div className="col-span-12 md:col-span-8">
@@ -173,19 +175,21 @@ const AboutInject = () => {
             className="relative col-span-12 aspect-[4/5] overflow-hidden rounded-xl md:col-span-4 md:mt-24"
             style={{ clipPath: 'inset(0% 0% 100% 0%)' }}
           >
-            <Image
-              src={my_photo}
-              alt={`Illustrated portrait of ${site.shortName}`}
-              fill
-              priority
-              sizes="(min-width: 768px) 33vw, 100vw"
-              className="object-cover grayscale contrast-125"
-            />
-            <div
-              aria-hidden
-              className="absolute inset-0 mix-blend-multiply"
-              style={{ background: 'linear-gradient(to top, #ff3b4e 0%, #b3182c 45%, #3a060c 100%)' }}
-            />
+            <div className="only-base">
+              <Image
+                src={my_photo}
+                alt={`Illustrated portrait of ${site.shortName}`}
+                fill
+                sizes="(min-width: 768px) 33vw, 100vw"
+                className="object-cover grayscale contrast-125"
+              />
+              <div
+                aria-hidden
+                className="absolute inset-0 mix-blend-multiply"
+                style={{ background: 'linear-gradient(to top, #ff3b4e 0%, #b3182c 45%, #3a060c 100%)' }}
+              />
+            </div>
+            <LookPanel sizes="(min-width: 768px) 33vw, 100vw" />
           </div>
         </section>
 

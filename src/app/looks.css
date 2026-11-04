@@ -1,0 +1,482 @@
+/* Style variants, switched by `data-look` on <html>. See src/lib/looks.ts.
+   Unlayered on purpose: these rules beat the per-use Tailwind utilities. */
+
+/* Registered so the tokens can crossfade when the look or Tsuki's inversion changes. */
+@property --bg { syntax: '<color>'; inherits: true; initial-value: #0b0b0b; }
+@property --bg-soft { syntax: '<color>'; inherits: true; initial-value: #141414; }
+@property --ink { syntax: '<color>'; inherits: true; initial-value: #ece7df; }
+@property --muted { syntax: '<color>'; inherits: true; initial-value: #8b867e; }
+@property --accent { syntax: '<color>'; inherits: true; initial-value: #d7263d; }
+
+:root {
+  transition: --bg 0.7s ease, --bg-soft 0.7s ease, --ink 0.7s ease, --muted 0.7s ease, --accent 0.7s ease;
+}
+
+:root:not([data-look='base']) .only-base,
+:root:not([data-look='sumi']) .only-sumi,
+:root:not([data-look='tsuki']) .only-tsuki,
+:root:not([data-look='kiwami']) .only-kiwami,
+:root[data-look='base'] .look-only {
+  display: none !important;
+}
+
+:root:not([data-look='base']) .bg-accent {
+  color: var(--on-accent);
+}
+
+/* Vertical Japanese setting. */
+.tate {
+  writing-mode: vertical-rl;
+  text-orientation: upright;
+}
+
+.jp {
+  font-family: var(--font-jp), serif;
+  letter-spacing: 0.04em;
+}
+
+/* Bandages run past the page edge on purpose; this keeps them from widening it. */
+[data-first-screen],
+[data-statement] {
+  overflow-x: clip;
+}
+
+/* Where the figure stands, per look. */
+.look-stage {
+  left: var(--stage-x);
+  height: var(--stage-h);
+}
+
+.hero-sign {
+  font-size: var(--sign-size);
+}
+
+/* A carved seal, stamped slightly off square. */
+.hanko {
+  display: inline-grid;
+  place-items: center;
+  aspect-ratio: 1;
+  border-radius: 12%;
+  background: var(--accent);
+  color: var(--on-accent);
+  font-family: var(--font-jp), serif;
+  line-height: 1;
+  rotate: -4deg;
+  filter: url(#ink-rough);
+}
+
+/* The large vertical kanji beside each page title. */
+.page-kanji {
+  position: absolute;
+  top: 8vh;
+  right: 1.25rem;
+  font-size: clamp(1.5rem, 3.4vw, 3.75rem);
+  line-height: 1.05;
+  pointer-events: none;
+}
+
+@media (min-width: 768px) {
+  .page-kanji {
+    right: 2rem;
+  }
+}
+
+/* 墨 Sumi: ink on washi. Red is rationed to the seal and the surname. */
+:root[data-look='sumi'] {
+  --bg: #efe8da;
+  --bg-soft: #e6decd;
+  --ink: #15120e;
+  --muted: #6b6355;
+  --line: rgba(21, 18, 14, 0.2);
+  --accent: #b8231e;
+  --accent-soft: #d3433a;
+  --on-accent: #f6f0e4;
+  --stage-x: 62%;
+  --stage-h: 84svh;
+  --sign-size: clamp(1.5rem, 2.9vw, 2.75rem);
+}
+
+[data-look='sumi'] body {
+  --font-jp: var(--font-shippori);
+}
+
+[data-look='sumi'] .display {
+  font-family: var(--font-shippori), serif;
+  font-weight: 800;
+  letter-spacing: -0.04em;
+}
+
+[data-look='sumi'] .jp,
+[data-look='sumi'] .hanko {
+  font-weight: 800;
+}
+
+/* Mincho runs wider than Inter Tight, so the largest headings step down to keep words whole. */
+[data-look='sumi'] footer p.display {
+  font-size: 16vw;
+}
+
+[data-look='sumi'] .display[class*='27vw'] {
+  font-size: 23.5vw;
+}
+
+[data-look='sumi'] .display[class*='24vw'] {
+  flex-shrink: 0;
+  font-size: clamp(3.25rem, 17.5vw, 23rem);
+}
+
+@media (min-width: 768px) {
+  [data-look='sumi'] .display[class*='24vw'] {
+    font-size: clamp(4rem, 21vw, 23rem);
+  }
+}
+
+[data-look='sumi'] .display[class*='11.5vw'] {
+  font-size: clamp(3.25rem, 10.2vw, 11rem);
+}
+
+[data-look='sumi'] .display[class*='clamp(3rem,9vw,9rem)'] {
+  font-size: clamp(2.5rem, 7.4vw, 7.5rem);
+}
+
+[data-look='sumi'] .display[class*='clamp(3rem,9vw,8rem)'] {
+  font-size: clamp(2.25rem, 8vw, 7.5rem);
+}
+
+[data-look='sumi'] .display[class*='4.6vw'] {
+  font-size: clamp(1.8rem, 4.4vw, 4.75rem);
+}
+
+/* Ma: a small, mixed-case name and a lot of paper, instead of a wall of type. */
+[data-look='sumi'] [data-wordmark] .display {
+  font-size: max(9.2vw, 3.6rem);
+  line-height: 0.96;
+  text-align: left;
+  text-transform: none;
+  color: var(--ink);
+}
+
+[data-look='sumi'] [data-wordmark] .serif-swap {
+  color: inherit;
+}
+
+@media (min-width: 768px) {
+  [data-look='sumi'] .hero-tagline {
+    grid-column: 1 / span 4;
+    grid-row: 2;
+  }
+}
+
+/* Big enough that the blot's solid middle covers the screen at full size, in any orientation. */
+.ink-blot {
+  width: 170vmax;
+  aspect-ratio: 1;
+  background: url('/looks/blot.webp') center / contain no-repeat;
+}
+
+[data-look='sumi'] body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 130;
+  background: url('/looks/washi.webp');
+  mix-blend-mode: multiply;
+  opacity: 0.75;
+  pointer-events: none;
+}
+
+/* 月 Tsuki: black and crimson under a moon. */
+:root[data-look='tsuki'] {
+  --bg: #070506;
+  --bg-soft: #120b0d;
+  --ink: #f1e9e1;
+  --muted: #9a8b85;
+  --line: rgba(241, 233, 225, 0.16);
+  --accent: #d90f2a;
+  --accent-soft: #ff3d52;
+  --on-accent: #fff3ee;
+  --stage-x: 38%;
+  --stage-h: 104svh;
+  --sign-size: clamp(1rem, 1.8vw, 1.75rem);
+}
+
+/* The inversion: for one passage the world turns red and the ink turns black. */
+:root[data-look='tsuki'].is-inverted {
+  --bg: #ee2439;
+  --bg-soft: #d81a2e;
+  --ink: #070405;
+  --muted: #1c0507;
+  --line: rgba(7, 4, 5, 0.4);
+  --accent: #070405;
+  --accent-soft: #2a0a10;
+  --on-accent: #f1e9e1;
+}
+
+[data-look='tsuki'] body {
+  --font-jp: var(--font-yuji);
+}
+
+.moon {
+  position: absolute;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: radial-gradient(circle at 36% 34%, #ff2f45 0%, #e0102b 34%, #a10b22 68%, #5d0715 100%);
+  box-shadow: 0 0 120px 16px rgba(217, 15, 42, 0.34), 0 0 340px 90px rgba(217, 15, 42, 0.16);
+}
+
+.moon::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: url('/looks/washi.webp') center / 340px;
+  mix-blend-mode: multiply;
+  opacity: 0.8;
+}
+
+/* On phones the name sits on the moon, where red would vanish. */
+@media (max-width: 767px) {
+  [data-look='tsuki'] [data-wordmark] .text-accent {
+    color: #070506;
+  }
+}
+
+/* The footer's button crosses the moon as an eclipse. */
+[data-look='tsuki'] footer a.bg-accent {
+  background: #070506;
+  color: var(--ink);
+  box-shadow: 0 0 60px 6px rgba(255, 80, 90, 0.35);
+}
+
+/* Crows are masks so each can take its own tone: black on the moon, ember off it. */
+.crow {
+  position: absolute;
+  aspect-ratio: 10 / 9;
+}
+
+.crow > span {
+  display: block;
+  width: 100%;
+  height: 100%;
+  background: var(--crow, #070405);
+  -webkit-mask: url('/looks/crow.svg') center / contain no-repeat;
+  mask: url('/looks/crow.svg') center / contain no-repeat;
+  animation: crow-beat 0.62s steps(1) infinite, crow-drift 9s ease-in-out infinite alternate;
+  animation-delay: var(--beat, 0s), var(--beat, 0s);
+  animation-play-state: paused;
+}
+
+.crows-awake .crow > span {
+  animation-play-state: running;
+}
+
+@keyframes crow-beat {
+  0% {
+    -webkit-mask-image: url('/looks/crow.svg');
+    mask-image: url('/looks/crow.svg');
+  }
+  50% {
+    -webkit-mask-image: url('/looks/crow-down.svg');
+    mask-image: url('/looks/crow-down.svg');
+  }
+}
+
+@keyframes crow-drift {
+  from {
+    translate: 0 -6%;
+  }
+  to {
+    translate: 4% 8%;
+  }
+}
+
+/* The global reduced-motion rule shortens animations, which would strobe these infinite loops. */
+@media (prefers-reduced-motion: reduce) {
+  .crow > span {
+    animation: none;
+  }
+}
+
+/* 極 Kiwami: the site as the portrait. Its grey, its line, its bandage. */
+:root[data-look='kiwami'] {
+  --bg: #a19e99;
+  --bg-soft: #918e89;
+  --ink: #110e0c;
+  --muted: #2e2925;
+  --line: #110e0c;
+  --accent: #c4122b;
+  --accent-soft: #e0263f;
+  --on-accent: #f3ead9;
+  --stage-x: 39%;
+  --stage-h: 108svh;
+  --sign-size: clamp(1rem, 1.7vw, 1.625rem);
+}
+
+[data-look='kiwami'] body {
+  --font-jp: var(--font-dela);
+}
+
+[data-look='kiwami'] .display {
+  font-family: var(--font-dela), sans-serif;
+  font-weight: 400;
+  letter-spacing: -0.045em;
+}
+
+[data-look='kiwami'] [data-wordmark] .display {
+  font-size: 13.6vw;
+  line-height: 0.92;
+}
+
+/* Dela Gothic is far wider than Inter Tight, so every large heading steps down. */
+[data-look='kiwami'] footer p.display {
+  font-size: 12.8vw;
+}
+
+[data-look='kiwami'] .display[class*='27vw'] {
+  font-size: 20.6vw;
+}
+
+[data-look='kiwami'] .display[class*='24vw'] {
+  flex-shrink: 0;
+  font-size: clamp(3rem, 15.5vw, 21rem);
+}
+
+@media (min-width: 768px) {
+  [data-look='kiwami'] .display[class*='24vw'] {
+    font-size: clamp(3.25rem, 19vw, 21rem);
+  }
+}
+
+[data-look='kiwami'] .display[class*='19vw'] {
+  font-size: clamp(3rem, 14vw, 15rem);
+}
+
+[data-look='kiwami'] .display[class*='11.5vw'] {
+  font-size: clamp(2.75rem, 8.6vw, 9.5rem);
+}
+
+[data-look='kiwami'] .display[class*='clamp(3rem,9vw,9rem)'],
+[data-look='kiwami'] .display[class*='clamp(3rem,9vw,8rem)'] {
+  font-size: clamp(1.9rem, 7.4vw, 7rem);
+}
+
+[data-look='kiwami'] .display[class*='7.2vw'] {
+  font-size: clamp(2.05rem, 7vw, 8rem);
+}
+
+[data-look='kiwami'] .display[class*='4.6vw'] {
+  font-size: clamp(1.45rem, 4.1vw, 4.5rem);
+}
+
+[data-look='kiwami'] .display[class*='clamp(3.25rem,10vw,9.5rem)'] {
+  font-size: clamp(2.5rem, 9vw, 8.5rem);
+}
+
+/* A manga title: cream letters in a heavy ink outline, so the name holds over any art. */
+[data-look='kiwami'] [data-wordmark] .display {
+  color: #efe6d6;
+  -webkit-text-stroke: 0.09em #110e0c;
+  paint-order: stroke fill;
+}
+
+[data-look='kiwami'] [data-wordmark] .text-accent,
+[data-look='kiwami'] [data-wordmark] .serif-swap {
+  color: #c4122b;
+}
+
+/* Red on this grey is too faint for text, so text accents go a shade deeper. */
+[data-look='kiwami'] .text-accent {
+  color: #8f0c1d;
+}
+
+/* Copy on the speed lines sits in manga caption boxes. */
+[data-look='kiwami'] .hero-caption {
+  padding: 0.7em 0.9em;
+  background: #efe6d6;
+  border: 2.5px solid #110e0c;
+  color: #110e0c;
+}
+
+[data-look='kiwami'] .serif-swap {
+  font-family: inherit;
+  font-style: normal;
+  letter-spacing: inherit;
+  color: #8f0c1d;
+}
+
+.speed-lines {
+  --focus: 35% 26%;
+  position: absolute;
+  inset: 0;
+  background:
+    repeating-conic-gradient(from 3deg at var(--focus), #110e0c 0 0.5deg, transparent 0.5deg 4.1deg),
+    repeating-conic-gradient(from 0deg at var(--focus), #110e0c 0 0.25deg, transparent 0.25deg 2.7deg);
+  -webkit-mask:
+    radial-gradient(circle at var(--focus), transparent 32%, #000 62%),
+    linear-gradient(to bottom, transparent 8%, #000 13%);
+  -webkit-mask-composite: source-in;
+  mask:
+    radial-gradient(circle at var(--focus), transparent 32%, #000 62%),
+    linear-gradient(to bottom, transparent 8%, #000 13%);
+  mask-composite: intersect;
+}
+
+@media (max-width: 767px) {
+  .speed-lines {
+    --focus: 50% 74%;
+  }
+}
+
+/* Inside a framed portrait the lines burst from the head and run to every edge. */
+.look-panel .speed-lines {
+  --focus: 42% 42%;
+  -webkit-mask: radial-gradient(circle at var(--focus), transparent 30%, #000 70%);
+  mask: radial-gradient(circle at var(--focus), transparent 30%, #000 70%);
+}
+
+/* Images are manga panels: square corners, heavy ink frames. */
+[data-look='kiwami'] .rounded-xl {
+  border-radius: 0;
+  box-shadow: 0 0 0 3px #110e0c;
+}
+
+[data-look='kiwami'] .hero-sign {
+  padding: 0.5em 0.3em;
+  background: #efe6d6;
+  border: 2.5px solid #110e0c;
+  color: #110e0c;
+}
+
+.tone {
+  background-image: radial-gradient(#110e0c 30%, transparent 33%);
+  background-size: 7px 7px;
+}
+
+/* A strip of the blindfold: cream cloth, inked edges, stitch marks. */
+.bandage {
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  white-space: nowrap;
+  background: #efe6d6;
+  color: #110e0c;
+  border-block: 3px solid #110e0c;
+}
+
+.bandage::before,
+.bandage::after {
+  content: '';
+  position: absolute;
+  inset-inline: 0;
+  height: 2px;
+  background: repeating-linear-gradient(90deg, #110e0c 0 16px, transparent 16px 58px);
+}
+
+.bandage::before {
+  top: 12%;
+}
+
+.bandage::after {
+  bottom: 12%;
+  background-position: 30px 0;
+}

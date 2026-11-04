@@ -1,6 +1,8 @@
 import ScrubText from '../../shared/ScrubText';
 import SplitReveal from '../../shared/SplitReveal';
 import Mixed from '../../shared/Mixed';
+import Inversion from '../../shared/looks/Inversion';
+import { Bandage } from '../../shared/looks/Art';
 
 const services = [
   {
@@ -18,7 +20,9 @@ const services = [
 ];
 
 const Statement = () => (
-  <section className="wrapper py-[14vh] md:py-[18vh]">
+  <section data-statement className="wrapper relative py-[14vh] md:py-[18vh]">
+    <Inversion trigger="[data-statement]" />
+    <Bandage className="only-kiwami relative -mx-[6vw] mb-[10vh] h-14 w-[112vw] rotate-[1.2deg] text-xl md:h-20 md:text-3xl" />
     <ScrubText as="h2" className="display text-[clamp(2.5rem,7.2vw,8.25rem)] leading-[0.9]">
       <Mixed text="I build apps & web experiences that feel *a*live — fast, fluid & hard t*o* put d*o*wn" />
     </ScrubText>

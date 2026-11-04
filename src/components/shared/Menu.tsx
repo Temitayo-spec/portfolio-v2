@@ -68,8 +68,11 @@ const Menu = () => {
                       aria-current={active ? 'page' : undefined}
                       className="group relative flex items-start gap-3 py-1"
                     >
-                      <span className="meta mt-[1.2em] text-muted transition-colors group-hover:text-accent">
+                      <span className="only-base meta mt-[1.2em] text-muted transition-colors group-hover:text-accent">
                         0{i + 1}
+                      </span>
+                      <span aria-hidden lang="ja" className="look-only tate jp mt-[0.6em] text-sm leading-none text-accent md:text-lg">
+                        {link.jp}
                       </span>
                       <span className="roll display text-[clamp(3.25rem,10vw,9.5rem)]">
                         <span className={active ? 'text-accent' : ''}>{link.title}</span>

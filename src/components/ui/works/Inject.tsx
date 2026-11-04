@@ -10,6 +10,7 @@ import SplitReveal from '../../shared/SplitReveal';
 import Mixed from '../../shared/Mixed';
 import WorksList from './WorksList';
 import Packages from './Packages';
+import { PageKanji } from '../../shared/looks/Art';
 
 const WorksInject: FC<{ works: Work[]; packages: Package[] }> = ({ works, packages }) => {
   const { view: grid, setView } = useViewStore();
@@ -26,6 +27,7 @@ const WorksInject: FC<{ works: Work[]; packages: Package[] }> = ({ works, packag
   return (
     <PageShell>
       <TopBar />
+      <PageKanji>作品</PageKanji>
 
       <section className="wrapper pt-[16vh] md:pt-[20vh]">
         <div className="flex items-start gap-3">

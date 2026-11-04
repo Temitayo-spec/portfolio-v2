@@ -13,16 +13,16 @@ import Mixed from '../../shared/Mixed';
 import Magnetic from '../../shared/Magnetic';
 import LocalTime from '../../shared/LocalTime';
 import Roll from '../../shared/Roll';
+import { Backdrop, Bandage, Crows, Figure, Hanko, LookPanel } from '../../shared/looks/Art';
 
 /** Crimson duotone of the avatar: greyscale image multiplied by a red gradient. */
-const Portrait = ({ priority = false }: { priority?: boolean }) => (
+const Portrait = () => (
   <>
     <div data-portrait-inner className="absolute inset-[-6%]">
       <Image
         src={my_photo}
         alt={`Illustrated portrait of ${site.shortName}`}
         fill
-        priority={priority}
         sizes="(min-width: 768px) 30vw, 100vw"
         className="object-cover object-[46%_50%] grayscale contrast-125"
       />
@@ -66,6 +66,21 @@ const HeroSection = ({ projectCount }: { projectCount: number }) => {
         ease: 'expo.out',
         scrollTrigger: { trigger: '[data-info]', start: 'top 75%', once: true },
       });
+
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+      // Looks: the moon sinks, the crows scatter and the blindfold comes off the name.
+      const firstScreen = { trigger: '[data-first-screen]', start: 'top top', end: 'bottom top', scrub: true };
+      gsap.to('[data-moon]', { yPercent: 16, ease: 'none', scrollTrigger: firstScreen });
+      gsap.utils.toArray<HTMLElement>('[data-crow]').forEach((crow) => {
+        gsap.to(crow, {
+          x: `${crow.dataset.dx}vw`,
+          y: `${crow.dataset.dy}vh`,
+          ease: 'power1.in',
+          scrollTrigger: firstScreen,
+        });
+      });
+      gsap.to('[data-bandage]', { xPercent: 70, rotate: 7, ease: 'power1.in', scrollTrigger: firstScreen });
     }, root);
     return () => ctx.revert();
   }, []);
@@ -79,7 +94,8 @@ const HeroSection = ({ projectCount }: { projectCount: number }) => {
         .fromTo('[data-portrait]', { clipPath: 'inset(100% 0% 0% 0%)' }, { clipPath: 'inset(0% 0% 0% 0%)', duration: 1.6 })
         .fromTo('[data-portrait-inner]', { scale: 1.35 }, { scale: 1, duration: 1.8 }, 0)
         .fromTo('[data-hero-line]', { scaleX: 0 }, { scaleX: 1, duration: 1.6 }, 0.3)
-        .fromTo('[data-star]', { scale: 0 }, { scale: 1, duration: 1.4, ease: 'expo.out' }, 0.8);
+        .fromTo('[data-star]', { scale: 0 }, { scale: 1, duration: 1.4, ease: 'expo.out' }, 0.8)
+        .fromTo('[data-moon-rise]', { y: '24vh', opacity: 0 }, { y: 0, opacity: 1, duration: 1.8, ease: 'expo.out' }, 0.1);
     }, root);
     return () => ctx.revert();
   }, [introDone]);
@@ -99,23 +115,49 @@ const HeroSection = ({ projectCount }: { projectCount: number }) => {
     <section ref={root} className="relative">
       {/* Portrait stays pinned while the name scrolls off and the info rows arrive. */}
       <div aria-hidden className="pointer-events-none absolute inset-0 hidden md:block">
-        <div className="sticky top-0 h-[100svh]">
+        <div className="sticky top-0 h-[100svh] overflow-x-clip">
           <div
             data-portrait
-            className="absolute top-0 left-[27%] h-full w-[30vw] overflow-hidden"
+            className="only-base absolute top-0 left-[27%] h-full w-[30vw] overflow-hidden"
             style={{ clipPath: 'inset(100% 0% 0% 0%)' }}
           >
-            <Portrait priority />
+            <Portrait />
           </div>
+
+          <div data-moon-rise className="only-tsuki absolute inset-0">
+            <div data-moon className="moon top-[3%] left-[37%] w-[min(88vh,62vw)] -translate-x-1/2" />
+          </div>
+          <div className="only-kiwami speed-lines" />
+          <div className="only-sumi absolute top-[3%] left-[59%] aspect-square h-[76svh] -translate-x-1/2">
+            <Backdrop sizes="74vh" />
+          </div>
+          <div
+            data-portrait
+            className="look-only look-stage absolute bottom-0 aspect-square -translate-x-1/2"
+            style={{ clipPath: 'inset(100% 0% 0% 0%)' }}
+          >
+            <div data-portrait-inner className="absolute inset-0">
+              <Figure sizes="110vh" lead />
+            </div>
+          </div>
+          <Crows />
         </div>
       </div>
 
       <div data-first-screen className="relative flex min-h-[88svh] flex-col md:min-h-[100svh]">
+        {/* Phones have no pinned stage, so the first screen carries each look's art. */}
+        <div aria-hidden className="look-only absolute inset-0 overflow-hidden md:hidden">
+          <div className="only-tsuki moon top-[40%] left-1/2 w-[112vw] -translate-x-1/2" />
+          <div className="only-kiwami speed-lines" />
+          <div className="only-sumi absolute top-[41%] right-[7vw] aspect-square w-[50vw]">
+            <Backdrop sizes="50vw" />
+          </div>
+        </div>
         <TopBar />
 
         <div className="wrapper relative mt-[18vh] grid grid-cols-12 items-start gap-y-6 md:mt-[22vh]">
           <div className="col-span-6 md:col-span-3">
-            <SplitReveal on="intro" delay={0.4} className="meta">
+            <SplitReveal on="intro" delay={0.4} className="hero-caption meta w-fit">
               (Hello)
             </SplitReveal>
             <span data-hero-line className="mt-4 block h-px w-8 origin-left bg-accent" />
@@ -123,7 +165,7 @@ const HeroSection = ({ projectCount }: { projectCount: number }) => {
           <svg
             data-star
             viewBox="0 0 24 24"
-            className="col-span-6 size-7 justify-self-end text-accent md:col-span-1 md:col-start-7 md:size-9"
+            className="only-base col-span-6 size-7 justify-self-end text-accent md:col-span-1 md:col-start-7 md:size-9"
             aria-hidden
           >
             <path
@@ -134,10 +176,18 @@ const HeroSection = ({ projectCount }: { projectCount: number }) => {
           <SplitReveal
             on="intro"
             delay={0.55}
-            className="col-span-12 max-w-[22rem] text-[15px] leading-snug text-muted md:col-span-4 md:col-start-9 md:text-base"
+            className="hero-caption hero-tagline col-span-12 max-w-[22rem] text-[15px] leading-snug text-muted md:col-span-4 md:col-start-9 md:text-base"
           >
             {site.tagline}
           </SplitReveal>
+        </div>
+
+        {/* Signed like a hanging scroll: the name in a column, closed with the seal. */}
+        <div aria-hidden className="look-only hero-sign absolute top-[9vh] right-5 z-10 hidden flex-col items-center gap-[0.5em] md:right-8 md:flex">
+          <span lang="ja" className="tate jp leading-[1.08]">
+            テミタヨ・オラワンレ
+          </span>
+          <Hanko className="size-[1.7em] text-[0.95em]" />
         </div>
 
         <span data-hero-line className="wrapper mt-8 block origin-left md:mt-10">
@@ -159,13 +209,17 @@ const HeroSection = ({ projectCount }: { projectCount: number }) => {
           >
             <Mixed text="*O*lawanle" />
           </SplitReveal>
+          <Bandage loose className="only-kiwami absolute top-[19%] -left-[6vw] h-[max(3.2vw,1.25rem)] md:top-[33%] w-[118vw] -rotate-[1.8deg] text-[max(1.5vw,0.625rem)]" />
         </h1>
       </div>
 
       {/* Mobile keeps the portrait in flow. */}
       <div className="wrapper md:hidden">
         <div className="relative aspect-[4/5] overflow-hidden rounded-xl">
-          <Portrait />
+          <div className="only-base">
+            <Portrait />
+          </div>
+          <LookPanel sizes="100vw" />
         </div>
       </div>
 
