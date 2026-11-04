@@ -76,7 +76,7 @@ const Footer = () => {
           className="only-sumi pointer-events-none absolute top-[9vh] -left-[6vw] h-[11vh] w-[112vw] bg-[url('/looks/stroke.webp')] bg-[length:100%_100%] max-md:hidden"
         />
 
-        <div className="wrapper relative mt-auto mb-auto flex flex-col gap-10 pt-24 md:flex-row md:items-end md:justify-between">
+        <div className="wrapper relative mt-auto mb-auto flex flex-col gap-6 pt-20 md:flex-row md:items-end md:justify-between md:gap-10 md:pt-24">
           <div>
             <p className="meta mb-5 flex items-center gap-3 text-muted">
               <svg ref={star} width="16" height="16" viewBox="0 0 24 24" className="text-accent" aria-hidden>
@@ -95,19 +95,19 @@ const Footer = () => {
           </div>
 
           {/* Phones have no room above the caption, so the bandage and stroke run behind the button. */}
-          <div className="absolute bottom-11 -left-[4vw] w-[108vw] -rotate-[1.4deg] md:hidden">
+          <div className="absolute bottom-9 -left-[4vw] w-[108vw] -rotate-[1.4deg] md:hidden">
             <Bandage className="only-kiwami relative h-14 text-xl" />
           </div>
           <div
             aria-hidden
-            className="only-sumi pointer-events-none absolute bottom-8 -left-[6vw] h-20 w-[112vw] bg-[url('/looks/stroke.webp')] bg-[length:100%_100%] md:hidden"
+            className="only-sumi pointer-events-none absolute bottom-6 -left-[6vw] h-20 w-[112vw] bg-[url('/looks/stroke.webp')] bg-[length:100%_100%] md:hidden"
           />
 
           <Magnetic>
             <a
               href={`mailto:${site.email}`}
               data-cursor="Say hi"
-              className="group relative flex size-36 shrink-0 items-center justify-center rounded-full bg-accent text-center md:size-44"
+              className="group relative flex size-32 shrink-0 items-center justify-center rounded-full bg-accent text-center md:size-44"
             >
               <span className="meta">
                 <Roll>Write me</Roll>
@@ -116,7 +116,7 @@ const Footer = () => {
           </Magnetic>
         </div>
 
-        <div className="wrapper relative grid grid-cols-2 gap-6 border-t border-line pt-5 md:grid-cols-4">
+        <div className="wrapper relative grid grid-cols-2 gap-x-6 gap-y-4 border-t border-line pt-5 md:grid-cols-4">
           <div className="meta flex flex-col gap-1">
             <span className="text-muted">Email</span>
             <a href={`mailto:${site.email}`} className="wipe-line w-fit break-all">
@@ -128,8 +128,13 @@ const Footer = () => {
             <span>
               {site.location} · <LocalTime />
             </span>
-            <span className="look-only mt-3 text-muted">This site comes in three looks</span>
-            <LookOptions className="look-only -ml-3" />
+            <span className="look-only mt-3 text-muted max-md:hidden">This site comes in three looks</span>
+            <LookOptions className="look-only -ml-3 max-md:hidden" />
+          </div>
+          {/* One line of its own on phones, or the column pushes the name off the screen. */}
+          <div className="look-only meta col-span-2 flex items-center gap-3 md:hidden">
+            <span className="text-muted">Looks</span>
+            <LookOptions />
           </div>
           <div className="meta flex flex-col gap-1">
             <span className="text-muted">Socials</span>
@@ -152,7 +157,7 @@ const Footer = () => {
 
         <p
           aria-label={site.shortName}
-          className="display relative mt-6 flex justify-between px-3 pr-[7vw] text-[20vw] leading-[0.74] md:px-5 md:pr-[7vw]"
+          className="display relative mt-4 flex justify-between px-3 pr-[7vw] text-[20vw] leading-[0.74] md:mt-6 md:px-5 md:pr-[7vw]"
         >
           {site.shortName.split('').map((char, i) => (
             // Clip mostly vertically (grown a little), so the italic O and tall glyphs aren't cut.
