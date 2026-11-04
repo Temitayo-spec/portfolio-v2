@@ -107,11 +107,12 @@ const Form = () => {
       </Field>
 
       <fieldset className="border-b border-line py-5">
-        <legend className="meta mb-4 flex gap-3 text-muted">
+        {/* Floated, or browsers pin a legend to the top edge and its padding lands underneath. */}
+        <legend className="meta float-left mb-3 flex w-full gap-3 text-muted">
           <span className="text-accent">04</span>
           Budget
         </legend>
-        <div className="flex flex-wrap gap-2">
+        <div className="clear-both flex flex-wrap gap-2">
           {budgets.map((budget) => {
             const selected = values.budget === budget;
             return (

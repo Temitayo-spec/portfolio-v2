@@ -68,10 +68,12 @@ const Footer = () => {
         />
 
         <div aria-hidden className="only-tsuki moon -top-[34vh] -right-[10vw] w-[min(90vh,70vw)]" />
-        <Bandage className="only-kiwami absolute top-[8vh] -left-[4vw] h-14 w-[108vw] -rotate-[1.4deg] text-xl md:h-20 md:text-3xl" />
+        <div className="max-md:hidden">
+          <Bandage className="only-kiwami absolute top-[8vh] -left-[4vw] h-20 w-[108vw] -rotate-[1.4deg] text-3xl" />
+        </div>
         <div
           aria-hidden
-          className="only-sumi pointer-events-none absolute top-[9vh] -left-[6vw] h-[11vh] w-[112vw] bg-[url('/looks/stroke.webp')] bg-[length:100%_100%]"
+          className="only-sumi pointer-events-none absolute top-[9vh] -left-[6vw] h-[11vh] w-[112vw] bg-[url('/looks/stroke.webp')] bg-[length:100%_100%] max-md:hidden"
         />
 
         <div className="wrapper relative mt-auto mb-auto flex flex-col gap-10 pt-24 md:flex-row md:items-end md:justify-between">
@@ -92,11 +94,20 @@ const Footer = () => {
             </SplitReveal>
           </div>
 
+          {/* Phones have no room above the caption, so the bandage and stroke run behind the button. */}
+          <div className="absolute bottom-11 -left-[4vw] w-[108vw] -rotate-[1.4deg] md:hidden">
+            <Bandage className="only-kiwami relative h-14 text-xl" />
+          </div>
+          <div
+            aria-hidden
+            className="only-sumi pointer-events-none absolute bottom-8 -left-[6vw] h-20 w-[112vw] bg-[url('/looks/stroke.webp')] bg-[length:100%_100%] md:hidden"
+          />
+
           <Magnetic>
             <a
               href={`mailto:${site.email}`}
               data-cursor="Say hi"
-              className="group flex size-36 shrink-0 items-center justify-center rounded-full bg-accent text-center md:size-44"
+              className="group relative flex size-36 shrink-0 items-center justify-center rounded-full bg-accent text-center md:size-44"
             >
               <span className="meta">
                 <Roll>Write me</Roll>
