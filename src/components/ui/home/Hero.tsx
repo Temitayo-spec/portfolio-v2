@@ -13,6 +13,7 @@ import Mixed from '../../shared/Mixed';
 import Magnetic from '../../shared/Magnetic';
 import LocalTime from '../../shared/LocalTime';
 import Roll from '../../shared/Roll';
+import { NowPlaying } from '../../shared/Spotify';
 import { Backdrop, Bandage, Crows, Figure, Hanko, LookPanel } from '../../shared/looks/Art';
 
 /** Crimson duotone of the avatar: greyscale image multiplied by a red gradient. */
@@ -235,6 +236,7 @@ const HeroSection = ({ projectCount }: { projectCount: number }) => {
               </div>
             ))}
           </dl>
+          <NowPlaying />
 
           <div data-info-row className="mt-10 flex flex-wrap items-center gap-6">
             <Magnetic>

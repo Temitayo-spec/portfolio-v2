@@ -532,3 +532,22 @@
   bottom: 12%;
   background-position: 30px 0;
 }
+
+/* Spotify allows its logo in white on dark and black on light, and nothing over cover art,
+   so Sumi's paper, which lies over the whole page, means no art in that look. */
+.spotify-logo {
+  display: block;
+  width: 5rem;
+  aspect-ratio: 823.46 / 225.25;
+  background: #fff;
+  mask: url('/spotify/logo.svg') center / contain no-repeat;
+}
+
+[data-look='sumi'] .spotify-logo,
+[data-look='kiwami'] .spotify-logo {
+  background: #000;
+}
+
+[data-look='sumi'] .spotify-art {
+  display: none;
+}

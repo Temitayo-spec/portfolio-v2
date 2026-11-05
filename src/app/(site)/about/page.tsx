@@ -1,9 +1,15 @@
 import { AboutInject } from '@/src/components';
+import { getOnRepeat } from '@/src/lib/spotify';
 
-const Page = () => {
+// Spotify's four-week chart moves slowly, so a few hours old is fine.
+export const revalidate = 21600;
+
+const Page = async () => {
+  const music = await getOnRepeat();
+
   return (
     <main>
-      <AboutInject />
+      <AboutInject music={music} />
     </main>
   );
 };

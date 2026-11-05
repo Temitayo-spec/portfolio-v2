@@ -6,6 +6,7 @@
     "dev": "next dev",
     "build": "node scripts/fonts.mjs --check && next build",
     "fonts": "node scripts/fonts.mjs",
+    "spotify": "node scripts/spotify.mjs",
     "start": "next start",
     "lint": "eslint"
   },

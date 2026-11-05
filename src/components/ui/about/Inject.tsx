@@ -6,6 +6,7 @@ import my_photo from '@/public/images/my_photo.jpeg';
 import { gsap } from '@/src/lib/gsap';
 import { useIntroStore } from '@/src/store/intro.store';
 import { site, yearsOfExperience } from '@/src/constants';
+import type { Music } from '@/src/lib/spotify';
 import PageShell from '../../shared/PageShell';
 import TopBar from '../../shared/TopBar';
 import { LookPanel, PageKanji } from '../../shared/looks/Art';
@@ -14,6 +15,7 @@ import ScrubText from '../../shared/ScrubText';
 import Mixed from '../../shared/Mixed';
 import Magnetic from '../../shared/Magnetic';
 import Roll from '../../shared/Roll';
+import { OnRepeat } from '../../shared/Spotify';
 
 const sections = [
   {
@@ -100,7 +102,7 @@ const stack = [
   ['Tooling', ['Docker', 'Cloudflare Workers', 'GitHub Actions', 'Sentry', 'Jest', 'Vitest', 'Turborepo', 'MCP servers']],
 ] as const;
 
-const AboutInject = () => {
+const AboutInject = ({ music }: { music: Music | null }) => {
   const root = useRef<HTMLDivElement>(null);
   const introDone = useIntroStore((s) => s.done);
 
@@ -263,6 +265,8 @@ const AboutInject = () => {
             </div>
           ))}
         </section>
+
+        {music && <OnRepeat {...music} />}
 
         <section className="wrapper mt-[16vh] grid grid-cols-12 items-end gap-y-8 pb-[6vh]">
           <div className="col-span-12 md:col-span-8">
