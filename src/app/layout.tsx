@@ -25,9 +25,33 @@ const jetbrainsMono = JetBrains_Mono({
   weight: ['400', '500'],
 });
 
+const title = `${site.name} — ${site.role}`;
+
+const shareImage = {
+  url: '/og-image.jpg',
+  width: 1200,
+  height: 630,
+  alt: `${site.name}, ${site.role} in ${site.location}. A blindfolded figure in a cap stands before a red moon, with the name set large across the image.`,
+};
+
 export const metadata: Metadata = {
-  title: `${site.name} — ${site.role}`,
+  metadataBase: new URL(site.url),
+  title,
   description: site.tagline,
+  openGraph: {
+    title,
+    description: site.tagline,
+    url: '/',
+    siteName: site.name,
+    type: 'website',
+    images: [shareImage],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title,
+    description: site.tagline,
+    images: [shareImage],
+  },
 };
 
 export default function RootLayout({

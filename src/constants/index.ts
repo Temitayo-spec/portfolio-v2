@@ -1,6 +1,7 @@
 export const site = {
   name: 'Temitayo Olawanle',
   shortName: 'Temitayo',
+  url: 'https://temitayoo.vercel.app',
   role: 'Mobile & Full-Stack Engineer',
   tagline:
     'I build mobile apps and the web products around them, end to end, and sweat every pixel and frame.',
