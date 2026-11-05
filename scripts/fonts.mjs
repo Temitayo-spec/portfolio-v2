@@ -16,12 +16,11 @@ const LATIN = `ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789 !"
 // Chrome's user agent, so Google serves woff2.
 const AGENT = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0 Safari/537.36';
 
-// Boku only sets Japanese. Mincho and Gothic also set each look's Latin headings, and Poster sets only Tsuki's.
+// Boku only sets Japanese. Mincho and Gothic also set each look's Latin headings.
 const fonts = [
   { family: 'Yuji Boku', query: 'Yuji+Boku', name: 'Look Boku', file: 'boku', weight: 400, latin: false },
   { family: 'Shippori Mincho', query: 'Shippori+Mincho:wght@800', name: 'Look Mincho', file: 'mincho', weight: 800, latin: true },
   { family: 'Dela Gothic One', query: 'Dela+Gothic+One', name: 'Look Gothic', file: 'gothic', weight: 400, latin: true },
-  { family: 'League Gothic', query: 'League+Gothic', name: 'Look Poster', file: 'poster', weight: 400, latin: true },
 ];
 
 const sources = (dir) =>
@@ -87,14 +86,13 @@ for (const file of readdirSync('public/fonts')) {
 writeFileSync(
   CSS,
   `/* Written by scripts/fonts.mjs. Japanese fonts cut down to the characters the site uses,
-   so each look costs one small file. Yuji Boku, Shippori Mincho, Dela Gothic One and
-   League Gothic are under the SIL Open Font License 1.1.
+   so each look costs one small file. Yuji Boku, Shippori Mincho and Dela Gothic One
+   are under the SIL Open Font License 1.1.
    Characters: ${chars} */
 :root {
   --font-yuji: 'Look Boku';
   --font-shippori: 'Look Mincho';
   --font-dela: 'Look Gothic';
-  --font-poster: 'Look Poster';
 }
 
 ${faces.join('\n')}`

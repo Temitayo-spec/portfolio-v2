@@ -284,7 +284,7 @@
   --tag-x: 72vw;
   --tag-y: 17svh;
   --tag-w: min(19rem, 22vw);
-  --chip-y: calc(14.4vw + 1.25rem);
+  --chip-y: calc(9.6vw + 1.25rem);
 }
 
 /* The inversion: for one passage the world turns red and the ink turns black. */
@@ -303,32 +303,29 @@
   --font-jp: var(--font-yuji);
 }
 
-/* A film poster's title: tall, narrow and all one colour but for the O's. */
-[data-look='tsuki'] .display {
-  font-family: var(--font-poster), sans-serif;
-  letter-spacing: 0.012em;
-}
-
+/* Sized off the surname, the wider half, so it runs margin to margin. */
 [data-look='tsuki'] [data-wordmark] .display {
-  font-size: 29.3vw;
-  line-height: 0.92;
+  font-size: calc((100vw - 2.5rem) / 4.75);
 }
 
-/* Spaced to match the wider surname, so both halves come out the same length. */
+/* Opened up to match, so both halves come out the same length. */
 [data-look='tsuki'] .name-first {
-  letter-spacing: 0.041em;
+  letter-spacing: -0.0075em;
 }
 
 @media (min-width: 768px) {
   [data-look='tsuki'] [data-wordmark] .display {
-    font-size: 15.3vw;
-    line-height: 1;
+    font-size: calc((98.8vw - 4rem) / 9.5);
   }
-}
 
-/* Taller than the sans it replaces, so the carousel's title keeps clear of the heading. */
-[data-look='tsuki'] .display[class*='27vw'] {
-  font-size: 25vw;
+  /* The hand fades out above the name, so pale letters never land on the pale bandage. */
+  [data-look='tsuki'] .look-stage [data-portrait-inner] {
+    --foot: linear-gradient(to top, transparent calc(10vw + 1.25rem), #000 calc(19vw + 1.25rem));
+    -webkit-mask-image: var(--sides), var(--foot);
+    -webkit-mask-composite: source-in;
+    mask-image: var(--sides), var(--foot);
+    mask-composite: intersect;
+  }
 }
 
 .moon {

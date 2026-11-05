@@ -88,7 +88,7 @@ const HeroSection = ({ projectCount }: { projectCount: number }) => {
       <div aria-hidden className="pointer-events-none absolute inset-0 hidden md:block">
         <div className="sticky top-0 h-[100svh] overflow-x-clip">
           <div data-moon-rise className="only-tsuki absolute inset-0">
-            <div data-moon className="moon top-[3%] left-[37%] w-[min(88vh,62vw)] -translate-x-1/2" />
+            <div data-moon className="moon top-[3%] left-[37%] w-[min(83vh,62vw)] -translate-x-1/2" />
           </div>
           <div className="only-kiwami speed-lines" />
           <div className="only-sumi absolute top-[3%] left-[59%] aspect-square h-[76svh] -translate-x-1/2">
@@ -110,7 +110,7 @@ const HeroSection = ({ projectCount }: { projectCount: number }) => {
       <div data-first-screen className="relative flex min-h-[88svh] flex-col md:min-h-[100svh]">
         {/* Phones have no pinned stage, so the first screen carries each look's art. */}
         <div aria-hidden className="look-only absolute inset-0 overflow-x-clip md:hidden">
-          <div className="only-tsuki moon bottom-[calc(50vw+2.5rem)] left-1/2 w-[min(84vw,calc(88svh-50vw-13.5rem))] -translate-x-1/2" />
+          <div className="only-tsuki moon bottom-[calc(34vw+2.5rem)] left-1/2 w-[min(84vw,calc(88svh-34vw-13.5rem))] -translate-x-1/2" />
           <div className="only-kiwami speed-lines" />
           <div className="only-sumi absolute bottom-[calc(30vw+3.5rem)] left-1/2 aspect-square w-[min(72vw,38svh)] -translate-x-1/2">
             <Backdrop />
