@@ -1,8 +1,6 @@
 'use client';
 import { useLayoutEffect, useRef } from 'react';
-import Image from 'next/image';
 import Link from 'next/link';
-import my_photo from '@/public/images/my_photo.jpeg';
 import { gsap } from '@/src/lib/gsap';
 import { useIntroStore } from '@/src/store/intro.store';
 import { site, yearsOfExperience } from '@/src/constants';
@@ -15,27 +13,6 @@ import LocalTime from '../../shared/LocalTime';
 import Roll from '../../shared/Roll';
 import { NowPlaying } from '../../shared/Spotify';
 import { Backdrop, Bandage, Crows, Figure, Hanko, LookPanel } from '../../shared/looks/Art';
-
-/** Crimson duotone of the avatar: greyscale image multiplied by a red gradient. */
-const Portrait = () => (
-  <>
-    <div data-portrait-inner className="absolute inset-[-6%]">
-      <Image
-        src={my_photo}
-        alt={`Illustrated portrait of ${site.shortName}`}
-        fill
-        sizes="(min-width: 768px) 30vw, 100vw"
-        className="object-cover object-[46%_50%] grayscale contrast-125"
-      />
-    </div>
-    <div
-      aria-hidden
-      className="absolute inset-0 mix-blend-multiply"
-      style={{ background: 'linear-gradient(to top, #ff3b4e 0%, #b3182c 45%, #3a060c 100%)' }}
-    />
-    <div aria-hidden className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-bg to-transparent" />
-  </>
-);
 
 const HeroSection = ({ projectCount }: { projectCount: number }) => {
   const root = useRef<HTMLElement>(null);
@@ -53,11 +30,6 @@ const HeroSection = ({ projectCount }: { projectCount: number }) => {
         yPercent: 8,
         ease: 'none',
         scrollTrigger: { trigger: root.current, start: 'top top', end: 'bottom bottom', scrub: true },
-      });
-      gsap.to('[data-star]', {
-        rotate: 270,
-        ease: 'none',
-        scrollTrigger: { trigger: root.current, start: 'top top', end: 'bottom top', scrub: true },
       });
       gsap.from('[data-info-row]', {
         opacity: 0,
@@ -94,8 +66,6 @@ const HeroSection = ({ projectCount }: { projectCount: number }) => {
         .timeline({ defaults: { ease: 'expo.inOut' } })
         .fromTo('[data-portrait]', { clipPath: 'inset(100% 0% 0% 0%)' }, { clipPath: 'inset(0% 0% 0% 0%)', duration: 1.6 })
         .fromTo('[data-portrait-inner]', { scale: 1.35 }, { scale: 1, duration: 1.8 }, 0)
-        .fromTo('[data-hero-line]', { scaleX: 0 }, { scaleX: 1, duration: 1.6 }, 0.3)
-        .fromTo('[data-star]', { scale: 0 }, { scale: 1, duration: 1.4, ease: 'expo.out' }, 0.8)
         .fromTo('[data-moon-rise]', { y: '24vh', opacity: 0 }, { y: 0, opacity: 1, duration: 1.8, ease: 'expo.out' }, 0.1);
     }, root);
     return () => ctx.revert();
@@ -117,14 +87,6 @@ const HeroSection = ({ projectCount }: { projectCount: number }) => {
       {/* Portrait stays pinned while the name scrolls off and the info rows arrive. */}
       <div aria-hidden className="pointer-events-none absolute inset-0 hidden md:block">
         <div className="sticky top-0 h-[100svh] overflow-x-clip">
-          <div
-            data-portrait
-            className="only-base absolute top-0 left-[27%] h-full w-[30vw] overflow-hidden"
-            style={{ clipPath: 'inset(100% 0% 0% 0%)' }}
-          >
-            <Portrait />
-          </div>
-
           <div data-moon-rise className="only-tsuki absolute inset-0">
             <div data-moon className="moon top-[3%] left-[37%] w-[min(88vh,62vw)] -translate-x-1/2" />
           </div>
@@ -148,78 +110,44 @@ const HeroSection = ({ projectCount }: { projectCount: number }) => {
       <div data-first-screen className="relative flex min-h-[88svh] flex-col md:min-h-[100svh]">
         {/* Phones have no pinned stage, so the first screen carries each look's art. */}
         <div aria-hidden className="look-only absolute inset-0 overflow-x-clip md:hidden">
-          <div className="only-tsuki moon top-[45%] left-1/2 w-[min(94vw,46svh)] -translate-x-1/2" />
+          <div className="only-tsuki moon bottom-[calc(50vw+2.5rem)] left-1/2 w-[min(84vw,calc(88svh-50vw-13.5rem))] -translate-x-1/2" />
           <div className="only-kiwami speed-lines" />
-          <div className="only-sumi absolute top-[41.5%] right-[7vw] aspect-square w-[43vw] max-[374px]:top-[44%]">
+          <div className="only-sumi absolute bottom-[calc(30vw+3.5rem)] left-1/2 aspect-square w-[min(72vw,38svh)] -translate-x-1/2">
             <Backdrop />
           </div>
         </div>
         <TopBar />
 
-        <div className="wrapper relative mt-[18vh] grid grid-cols-12 items-start gap-y-6 md:mt-[22vh]">
-          <div className="col-span-6 md:col-span-3">
-            <SplitReveal on="intro" delay={0.4} className="hero-caption meta w-fit">
-              (Hello)
-            </SplitReveal>
-            <span data-hero-line className="mt-4 block h-px w-8 origin-left bg-accent" />
-          </div>
-          <svg
-            data-star
-            viewBox="0 0 24 24"
-            className="only-base col-span-6 size-7 justify-self-end text-accent md:col-span-1 md:col-start-7 md:size-9"
-            aria-hidden
-          >
-            <path
-              fill="currentColor"
-              d="M12 0l1.6 8.1L20.5 3.5l-4.6 6.9L24 12l-8.1 1.6 4.6 6.9-6.9-4.6L12 24l-1.6-8.1-6.9 4.6 4.6-6.9L0 12l8.1-1.6L3.5 3.5l6.9 4.6z"
-            />
-          </svg>
-          <SplitReveal
-            on="intro"
-            delay={0.55}
-            className="hero-caption hero-tagline col-span-12 max-w-[22rem] text-[15px] leading-snug text-muted md:col-span-4 md:col-start-9 md:text-base"
-          >
-            {site.tagline}
-          </SplitReveal>
-        </div>
+        <SplitReveal
+          on="intro"
+          delay={0.55}
+          className="hero-caption hero-tagline relative mx-5 mt-[7vh] max-w-[22rem] text-[15px] leading-snug text-muted md:text-base"
+        >
+          {site.tagline}
+        </SplitReveal>
 
         {/* Signed like a hanging scroll: the name in a column, closed with the seal. */}
-        <div aria-hidden className="look-only hero-sign absolute top-[9vh] right-5 z-10 hidden flex-col items-center gap-[0.5em] md:right-8 md:flex">
+        <div aria-hidden className="look-only hero-sign absolute top-[max(9vh,5.5rem)] right-5 z-10 hidden flex-col items-center gap-[0.5em] md:right-8 md:flex">
           <span lang="ja" className="tate jp leading-[1.08]">
             テミタヨ・オラワンレ
           </span>
           <Hanko className="size-[1.7em] text-[0.95em]" />
         </div>
 
-        <span data-hero-line className="wrapper mt-8 block origin-left md:mt-10">
-          <span className="block h-px w-full bg-line" />
-        </span>
-
-        {/* Bottom padding on mobile keeps the name clear of the corner buttons. */}
-        <h1 data-wordmark aria-label={site.name} className="relative mt-auto pb-24 md:pb-6">
-          <SplitReveal on="intro" by="chars" delay={0.35} stagger={0.035} duration={1.4} className="display px-3 text-[20.5vw] whitespace-nowrap md:px-5">
+                <h1 data-wordmark aria-label={site.name} className="name relative mt-auto pb-10 md:pb-5">
+          <SplitReveal on="intro" by="chars" delay={0.35} stagger={0.035} duration={1.4} className="display name-first text-[20.5vw] whitespace-nowrap">
             <Mixed text="Temitay*o*" />
           </SplitReveal>
-          <SplitReveal
-            on="intro"
-            by="chars"
-            delay={0.55}
-            stagger={0.035}
-            duration={1.4}
-            className="display px-3 text-right text-[20.5vw] whitespace-nowrap text-accent md:px-5"
-          >
+          <SplitReveal on="intro" by="chars" delay={0.55} stagger={0.035} duration={1.4} className="display name-last text-[20.5vw] whitespace-nowrap">
             <Mixed text="*O*lawanle" />
           </SplitReveal>
-          <Bandage loose className="only-kiwami absolute top-[25%] -left-[6vw] h-[max(3.2vw,1.25rem)] min-[600px]:top-[29%] md:top-[33%] w-[118vw] -rotate-[1.8deg] text-[max(1.5vw,0.625rem)]" />
+          <Bandage loose className="only-kiwami absolute top-[calc(50%-1.25rem)] -left-[6vw] h-[max(3.2vw,1.25rem)] w-[118vw] -translate-y-1/2 -rotate-[1.8deg] text-[max(1.5vw,0.625rem)] md:top-[calc(50%-0.625rem)]" />
         </h1>
       </div>
 
       {/* Mobile keeps the portrait in flow. */}
       <div className="wrapper md:hidden">
         <div className="relative aspect-[4/5] overflow-hidden rounded-xl">
-          <div className="only-base">
-            <Portrait />
-          </div>
           <LookPanel sizes="100vw" />
         </div>
       </div>

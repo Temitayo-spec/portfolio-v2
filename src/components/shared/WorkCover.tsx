@@ -46,7 +46,7 @@ const Handset = ({
           className={phone.wordmark ? 'h-auto w-[72%]' : 'h-auto w-[38%] rounded-[22%]'}
         />
       ) : (
-        <span className="serif-swap text-[9cqw] leading-none text-ink">{work.title.charAt(0)}</span>
+        <span className="display text-[9cqw] leading-none text-ink">{work.title.charAt(0)}</span>
       )}
       {/* Sized to sit over the island in iPhone captures. */}
       <span aria-hidden className="absolute top-[1.6%] left-1/2 h-[4.1%] w-[31%] -translate-x-1/2 rounded-full bg-black" />
@@ -105,7 +105,7 @@ const WorkCover = ({ work, sizes, priority = false }: { work: Work; sizes: strin
       className="@container absolute inset-0 flex flex-col items-center justify-center gap-[2cqw] p-6 text-center"
       style={{ background: glow }}
     >
-      <span className="serif-swap text-[16cqw] leading-none text-accent">{work.title.charAt(0)}</span>
+      <span className="display text-[16cqw] leading-none text-accent">{work.title.charAt(0)}</span>
       <span className="meta text-muted">
         {workTypes[work.type]} · {work.stack.slice(0, 2).join(' / ')}
       </span>

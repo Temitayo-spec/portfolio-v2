@@ -152,9 +152,7 @@ const AboutInject = ({ music }: { music: Music | null }) => {
             <SplitReveal as="h1" on="intro" by="chars" stagger={0.02} className="display text-[clamp(3.5rem,11.5vw,12rem)]">
               <Mixed text="Temitay*o*" />
               <br />
-              <span className="text-accent">
-                <Mixed text="*O*lawanle" />
-              </span>
+              <Mixed text="*O*lawanle" />
             </SplitReveal>
             <SplitReveal on="intro" delay={0.4} className="meta mt-8">
               {`${site.role} — ${site.location}`}
@@ -197,7 +195,7 @@ const AboutInject = ({ music }: { music: Music | null }) => {
 
         <section className="wrapper py-[14vh] md:py-[18vh]">
           <ScrubText as="h2" className="display text-[clamp(2.25rem,6vw,6.75rem)] leading-[0.92]">
-            <Mixed text="Greetings! I'm Temitay*o*, an engineer wh*o* builds m*o*bile apps and the web pr*o*ducts ar*o*und them, end t*o* end." />
+            <Mixed text="Greetings! I'm Temitayo, an engineer who builds mobile apps and the web products around them, end to end." />
           </ScrubText>
         </section>
 

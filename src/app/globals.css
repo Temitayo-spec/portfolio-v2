@@ -23,7 +23,6 @@
   --color-accent-soft: var(--accent-soft);
 
   --font-sans: var(--font-inter-tight), ui-sans-serif, system-ui, sans-serif;
-  --font-serif: var(--font-instrument-serif), ui-serif, Georgia, serif;
   --font-mono: var(--font-jetbrains-mono), ui-monospace, monospace;
 
   --ease-out-expo: var(--ease-out-expo);
@@ -67,13 +66,9 @@
     @apply font-sans leading-[0.82] font-normal tracking-[-0.055em] uppercase;
   }
 
-  /* Serif italic letters mixed into sans words, see <Mixed />.
-     Uses the utility because inline theme fonts are not emitted as variables. */
-  .serif-swap {
-    @apply font-serif;
-    font-style: italic;
-    font-weight: 400;
-    letter-spacing: -0.02em;
+  /* Letters picked out in a heading, see <Mixed />. */
+  .letter-mark {
+    color: var(--accent);
   }
 }
 

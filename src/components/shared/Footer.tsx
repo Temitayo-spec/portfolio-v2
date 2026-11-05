@@ -20,7 +20,6 @@ import { LookOptions } from './looks/LookDraw';
 const Footer = () => {
   const root = useRef<HTMLDivElement>(null);
   const glow = useRef<HTMLDivElement>(null);
-  const star = useRef<SVGSVGElement>(null);
   const lenis = useLenis();
 
   useLayoutEffect(() => {
@@ -31,11 +30,6 @@ const Footer = () => {
         duration: 1.4,
         stagger: 0.05,
         scrollTrigger: { trigger: root.current, start: 'top 35%' },
-      });
-      gsap.to(star.current, {
-        rotate: 360,
-        ease: 'none',
-        scrollTrigger: { trigger: root.current, start: 'top bottom', end: 'bottom bottom', scrub: true },
       });
     }, root);
     return () => ctx.revert();
@@ -79,12 +73,7 @@ const Footer = () => {
         <div className="wrapper relative mt-auto mb-auto flex flex-col gap-6 pt-20 md:flex-row md:items-end md:justify-between md:gap-10 md:pt-24">
           <div>
             <p className="meta mb-5 flex items-center gap-3 text-muted">
-              <svg ref={star} width="16" height="16" viewBox="0 0 24 24" className="text-accent" aria-hidden>
-                <path
-                  fill="currentColor"
-                  d="M12 0l1.6 8.1L20.5 3.5l-4.6 6.9L24 12l-8.1 1.6 4.6 6.9-6.9-4.6L12 24l-1.6-8.1-6.9 4.6 4.6-6.9L0 12l8.1-1.6L3.5 3.5l6.9 4.6z"
-                />
-              </svg>
+              <span aria-hidden className="size-2 rounded-full bg-accent" />
               Got a project in mind?
             </p>
             <SplitReveal as="h2" by="chars" className="display text-[clamp(3rem,9vw,9rem)]">
@@ -145,7 +134,7 @@ const Footer = () => {
             ))}
           </div>
           <div className="meta flex flex-col items-start gap-1 md:items-end">
-            <span className="text-muted">Portfolio ©{new Date().getFullYear()}</span>
+            <span className="text-muted">©{new Date().getFullYear()}</span>
             <Link href="/works" className="wipe-line">Works</Link>
             <Link href="/about" className="wipe-line">About</Link>
             <a href={site.resume} target="_blank" rel="noopener" className="wipe-line">CV (PDF)</a>
@@ -160,9 +149,9 @@ const Footer = () => {
           className="display relative mt-4 flex justify-between px-3 pr-[7vw] text-[20vw] leading-[0.74] md:mt-6 md:px-5 md:pr-[7vw]"
         >
           {site.shortName.split('').map((char, i) => (
-            // Clip mostly vertically (grown a little), so the italic O and tall glyphs aren't cut.
+            // Clip mostly vertically (grown a little), so tall glyphs aren't cut.
             <span key={i} aria-hidden className="block [clip-path:inset(-0.1em_-0.4em)]">
-              <span data-footer-char className={`block ${char === 'o' ? 'serif-swap text-accent' : ''}`}>
+              <span data-footer-char className={`block ${char === 'o' ? 'text-accent' : ''}`}>
                 {char}
               </span>
             </span>

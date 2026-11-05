@@ -71,6 +71,42 @@
   font-size: var(--sign-size);
 }
 
+/* The name. Both halves have eight letters, so on one line the two O's meet at the exact
+   centre. Phones stack them into two full-width lines. */
+.name {
+  padding-inline: 1.25rem;
+}
+
+@media (min-width: 768px) {
+  .name {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 1.2vw;
+    padding-inline: 2rem;
+  }
+
+  .name-first {
+    text-align: right;
+  }
+
+  /* Beside the art, in whatever space each look leaves free. */
+  .hero-tagline {
+    position: absolute;
+    top: var(--tag-y);
+    left: var(--tag-x);
+    width: var(--tag-w);
+    max-width: none;
+    margin: 0;
+  }
+}
+
+/* The ribbons and hand run off the portrait's edges, so they fade out instead of stopping dead. */
+.look-stage [data-portrait-inner] {
+  --sides: linear-gradient(to right, transparent, #000 6%, #000 88%, transparent);
+  -webkit-mask-image: var(--sides);
+  mask-image: var(--sides);
+}
+
 /* A carved seal, stamped slightly off square. */
 .hanko {
   display: inline-grid;
@@ -88,7 +124,7 @@
 /* The large vertical kanji beside each page title. */
 .page-kanji {
   position: absolute;
-  top: max(8vh, 3.75rem);
+  top: max(9vh, 5.5rem);
   right: 1.25rem;
   font-size: clamp(1.5rem, 3.4vw, 3.75rem);
   line-height: 1.05;
@@ -112,8 +148,12 @@
   --accent-soft: #d3433a;
   --on-accent: #f6f0e4;
   --stage-x: 62%;
-  --stage-h: 84svh;
+  --stage-h: 72svh;
   --sign-size: clamp(1.5rem, 2.9vw, 2.75rem);
+  --tag-x: 2rem;
+  --tag-y: 30svh;
+  --tag-w: min(19rem, 30vw);
+  --chip-y: calc(9vw + 1.25rem);
 }
 
 [data-look='sumi'] body {
@@ -167,23 +207,46 @@
   font-size: clamp(1.8rem, 4.4vw, 4.75rem);
 }
 
-/* Ma: a small, mixed-case name and a lot of paper, instead of a wall of type. */
+/* Ma: one quiet line of name along the foot of the paper, instead of a wall of type. */
 [data-look='sumi'] [data-wordmark] .display {
-  font-size: max(9.2vw, 3.6rem);
-  line-height: 0.96;
-  text-align: left;
-  text-transform: none;
-  color: var(--ink);
-}
-
-[data-look='sumi'] [data-wordmark] .serif-swap {
-  color: inherit;
+  font-size: 14.2vw;
+  line-height: 1;
 }
 
 @media (min-width: 768px) {
-  [data-look='sumi'] .hero-tagline {
-    grid-column: 1 / span 4;
-    grid-row: 2;
+  [data-look='sumi'] [data-wordmark] .display {
+    font-size: 7.6vw;
+  }
+}
+
+/* Red stays rationed to the seal. */
+[data-look='sumi'] .letter-mark {
+  color: inherit;
+}
+
+/* The O's are brushed, turned to face each other. Set on the split letters, so without
+   the split (reduced motion) they stay plain O's. */
+[data-look='sumi'] [data-wordmark] .letter-mark > div > div {
+  color: transparent;
+  background: url('/looks/enso.webp') center / contain no-repeat;
+  scale: 1.1;
+}
+
+[data-look='sumi'] .name-last .letter-mark > div > div {
+  rotate: 180deg;
+}
+
+/* The figure stands above the name and its feet wash out into the paper. */
+@media (min-width: 768px) {
+  [data-look='sumi'] .look-stage {
+    bottom: calc(9.5vw + 1.25rem);
+  }
+
+  [data-look='sumi'] .look-stage [data-portrait-inner] {
+    -webkit-mask-image: var(--sides), linear-gradient(to top, transparent, #000 16%);
+    -webkit-mask-composite: source-in;
+    mask-image: var(--sides), linear-gradient(to top, transparent, #000 16%);
+    mask-composite: intersect;
   }
 }
 
@@ -215,9 +278,13 @@
   --accent: #d90f2a;
   --accent-soft: #ff3d52;
   --on-accent: #fff3ee;
-  --stage-x: 38%;
+  --stage-x: 50%;
   --stage-h: 104svh;
   --sign-size: clamp(1rem, 1.8vw, 1.75rem);
+  --tag-x: 72vw;
+  --tag-y: 17svh;
+  --tag-w: min(19rem, 22vw);
+  --chip-y: calc(14.4vw + 1.25rem);
 }
 
 /* The inversion: for one passage the world turns red and the ink turns black. */
@@ -236,6 +303,34 @@
   --font-jp: var(--font-yuji);
 }
 
+/* A film poster's title: tall, narrow and all one colour but for the O's. */
+[data-look='tsuki'] .display {
+  font-family: var(--font-poster), sans-serif;
+  letter-spacing: 0.012em;
+}
+
+[data-look='tsuki'] [data-wordmark] .display {
+  font-size: 29.3vw;
+  line-height: 0.92;
+}
+
+/* Spaced to match the wider surname, so both halves come out the same length. */
+[data-look='tsuki'] .name-first {
+  letter-spacing: 0.041em;
+}
+
+@media (min-width: 768px) {
+  [data-look='tsuki'] [data-wordmark] .display {
+    font-size: 15.3vw;
+    line-height: 1;
+  }
+}
+
+/* Taller than the sans it replaces, so the carousel's title keeps clear of the heading. */
+[data-look='tsuki'] .display[class*='27vw'] {
+  font-size: 25vw;
+}
+
 .moon {
   position: absolute;
   aspect-ratio: 1;
@@ -252,16 +347,6 @@
   background: url('/looks/washi.webp') center / 340px;
   mix-blend-mode: multiply;
   opacity: 0.8;
-}
-
-/* On phones the name sits on the moon, where red would vanish. Short screens leave its ends
-   on the dark, so a moon-red outline holds them: it melts into the moon and shows only there. */
-@media (max-width: 767px) {
-  [data-look='tsuki'] [data-wordmark] .text-accent {
-    color: #070506;
-    -webkit-text-stroke: 0.04em #d90f2a;
-    paint-order: stroke fill;
-  }
 }
 
 /* The footer's button crosses the moon as an eclipse. */
@@ -333,6 +418,10 @@
   --stage-x: 39%;
   --stage-h: 108svh;
   --sign-size: clamp(1rem, 1.7vw, 1.625rem);
+  --tag-x: 64vw;
+  --tag-y: 30svh;
+  --tag-w: min(23rem, 28vw);
+  --chip-y: 1.25rem;
 }
 
 [data-look='kiwami'] body {
@@ -345,9 +434,26 @@
   letter-spacing: -0.045em;
 }
 
+/* Dela Gothic is too wide to share a line, so Kiwami stacks the name at every size. */
+[data-look='kiwami'] .name {
+  display: block;
+}
+
+[data-look='kiwami'] .name-first {
+  text-align: left;
+}
+
+/* On phones the lines stand apart, so the bandage runs between them and not over them. */
 [data-look='kiwami'] [data-wordmark] .display {
-  font-size: 13.6vw;
-  line-height: 0.92;
+  font-size: 12.8vw;
+  line-height: 1.3;
+}
+
+@media (min-width: 768px) {
+  [data-look='kiwami'] [data-wordmark] .display {
+    font-size: 13.6vw;
+    line-height: 0.92;
+  }
 }
 
 /* Dela Gothic is far wider than Inter Tight, so every large heading steps down. */
@@ -426,8 +532,7 @@
   paint-order: stroke fill;
 }
 
-[data-look='kiwami'] [data-wordmark] .text-accent,
-[data-look='kiwami'] [data-wordmark] .serif-swap {
+[data-look='kiwami'] [data-wordmark] .letter-mark {
   color: #c4122b;
 }
 
@@ -449,10 +554,7 @@
   color: #110e0c;
 }
 
-[data-look='kiwami'] .serif-swap {
-  font-family: inherit;
-  font-style: normal;
-  letter-spacing: inherit;
+[data-look='kiwami'] .letter-mark {
   color: #8f0c1d;
 }
 

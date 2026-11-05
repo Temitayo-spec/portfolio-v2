@@ -18,7 +18,7 @@ const ContactInject = () => {
           (Contact)
         </SplitReveal>
         <SplitReveal as="h1" on="intro" by="chars" className="display text-[clamp(4.5rem,19vw,20rem)] leading-[0.78]">
-          <Mixed text="Let's t*a*lk" />
+          <Mixed text="Let's talk" />
         </SplitReveal>
       </section>
 

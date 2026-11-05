@@ -11,9 +11,10 @@ const subscribe = (onChange: () => void) => {
 };
 
 /**
- * Trailing dot cursor. Grows into a labelled disc over elements with
- * `data-cursor="Label"`, and swells slightly over plain links and buttons.
- * Fine pointers only.
+ * Dot cursor. Grows into a labelled disc over elements with `data-cursor="Label"`,
+ * and opens into a ring over plain links and buttons. Fine pointers only.
+ * Drawn in two tones from the look's own colours, so one of them always stands out
+ * from what's behind it, in every look and over the art.
  */
 const Cursor = () => {
   const dot = useRef<HTMLDivElement>(null);
@@ -31,8 +32,9 @@ const Cursor = () => {
 
     document.documentElement.classList.add('has-cursor');
     gsap.set(el, { xPercent: -50, yPercent: -50, opacity: 0 });
-    const xTo = gsap.quickTo(el, 'x', { duration: 0.45, ease: 'power3' });
-    const yTo = gsap.quickTo(el, 'y', { duration: 0.45, ease: 'power3' });
+    // Stays close: the real arrow is hidden, so this is where clicks seem to land.
+    const xTo = gsap.quickTo(el, 'x', { duration: 0.12, ease: 'power3' });
+    const yTo = gsap.quickTo(el, 'y', { duration: 0.12, ease: 'power3' });
 
     const move = (e: PointerEvent) => {
       xTo(e.clientX);
@@ -64,7 +66,7 @@ const Cursor = () => {
 
   if (!enabled) return null;
 
-  const size = mode === 'label' ? 92 : mode === 'link' ? 36 : 10;
+  const size = mode === 'label' ? 92 : mode === 'link' ? 44 : 14;
 
   return (
     <div
@@ -74,15 +76,18 @@ const Cursor = () => {
       style={{
         width: size,
         height: size,
-        background: mode === 'label' ? 'var(--accent)' : 'var(--ink)',
-        mixBlendMode: mode === 'label' ? 'normal' : 'difference',
+        background: mode === 'label' ? 'var(--accent)' : mode === 'link' ? 'transparent' : 'var(--ink)',
+        boxShadow:
+          mode === 'link'
+            ? '0 0 0 1px var(--bg), inset 0 0 0 2px var(--ink), inset 0 0 0 3px var(--bg)'
+            : '0 0 0 2px var(--bg)',
         transition:
-          'width .5s var(--ease-out-expo), height .5s var(--ease-out-expo), background-color .3s',
+          'width .5s var(--ease-out-expo), height .5s var(--ease-out-expo), background-color .3s, box-shadow .3s',
       }}
     >
       <span
-        className="meta whitespace-nowrap text-ink transition-opacity duration-300"
-        style={{ opacity: mode === 'label' ? 1 : 0 }}
+        className="meta whitespace-nowrap transition-opacity duration-300"
+        style={{ color: 'var(--on-accent, var(--ink))', opacity: mode === 'label' ? 1 : 0 }}
       >
         {label}
       </span>

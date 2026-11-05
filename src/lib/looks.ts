@@ -1,6 +1,6 @@
 /**
  * The site comes in three looks. Each visitor draws one on their first visit and
- * keeps it, and `?look=` picks one for a link (`?look=base` shows the original).
+ * keeps it, and `?look=` picks one for a link.
  * A look is a `data-look` value on <html>: tokens and type live in app/looks.css,
  * and look-specific art is always rendered and shown with the `only-*` classes,
  * so switching needs no re-render.
@@ -31,7 +31,6 @@ export const lookBoot = `(function(){
 var ids=${JSON.stringify(looks.map((look) => look.id))},odds=${JSON.stringify(looks.map((look) => look.odds))},bars=${JSON.stringify(looks.map((look) => look.bar))},root=document.documentElement,look,saved;
 if(location.pathname.indexOf('/studio')===0)return;
 try{look=new URLSearchParams(location.search).get('look')}catch(e){}
-if(look==='base'){root.dataset.look=look;return}
 try{saved=localStorage.getItem('${lookKey}')}catch(e){}
 if(ids.indexOf(look)<0)look=saved;
 if(ids.indexOf(look)<0){var r=Math.random(),i=0;while(i<ids.length-1&&(r-=odds[i])>=0)i++;look=ids[i]}

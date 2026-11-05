@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { Inter_Tight, Instrument_Serif, JetBrains_Mono } from 'next/font/google';
+import { Inter_Tight, JetBrains_Mono } from 'next/font/google';
 import './globals.css';
 import './look-fonts.css';
 import './looks.css';
@@ -12,13 +12,6 @@ const interTight = Inter_Tight({
   subsets: ['latin'],
 });
 
-const instrumentSerif = Instrument_Serif({
-  variable: '--font-instrument-serif',
-  subsets: ['latin'],
-  weight: '400',
-  style: ['normal', 'italic'],
-});
-
 const jetbrainsMono = JetBrains_Mono({
   variable: '--font-jetbrains-mono',
   subsets: ['latin'],
@@ -28,7 +21,7 @@ const jetbrainsMono = JetBrains_Mono({
 const title = `${site.name} — ${site.role}`;
 
 const shareImage = {
-  url: '/og-image.jpg',
+  url: '/share.jpg',
   width: 1200,
   height: 630,
   alt: `${site.name}, ${site.role} in ${site.location}. A blindfolded figure in a cap stands before a red moon, with the name set large across the image.`,
@@ -65,7 +58,7 @@ export default function RootLayout({
         <script dangerouslySetInnerHTML={{ __html: lookBoot }} />
       </head>
       <body
-        className={`${interTight.variable} ${instrumentSerif.variable} ${jetbrainsMono.variable} antialiased`}
+        className={`${interTight.variable} ${jetbrainsMono.variable} antialiased`}
       >
         <SanityLive />
         {children}

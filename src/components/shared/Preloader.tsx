@@ -92,14 +92,14 @@ const Preloader = () => {
     >
       <div className="meta flex justify-between text-muted">
         <span>{site.name}</span>
-        <span>Portfolio ©{new Date().getFullYear()}</span>
+        <span>{site.location}</span>
       </div>
 
       <div className="flex justify-center">
         <p className="display flex text-[16vw] md:text-[9vw]">
           {site.shortName.split('').map((char, i) => (
             <span key={i} className="block [clip-path:inset(-0.1em_-0.4em)]">
-              <span data-pre-char className={`block ${char === 'o' ? 'serif-swap' : ''}`}>
+              <span data-pre-char className={`block ${char === 'o' ? 'letter-mark' : ''}`}>
                 {char}
               </span>
             </span>

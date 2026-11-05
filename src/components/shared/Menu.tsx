@@ -10,7 +10,7 @@ import LocalTime from './LocalTime';
 
 /**
  * Full-screen menu. The panel wipes up from the bottom, then each link rises
- * out of its mask. Hovering a link rolls it into the serif italic.
+ * out of its mask. Hovering a link rolls it into red.
  */
 const Menu = () => {
   const pathname = usePathname();
@@ -76,7 +76,7 @@ const Menu = () => {
                       </span>
                       <span className="roll display text-[clamp(3.25rem,10vw,9.5rem)]">
                         <span className={active ? 'text-accent' : ''}>{link.title}</span>
-                        <span aria-hidden className="serif-swap text-accent">
+                        <span aria-hidden className="text-accent">
                           {link.title}
                         </span>
                       </span>

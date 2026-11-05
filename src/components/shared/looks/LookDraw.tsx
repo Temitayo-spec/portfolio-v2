@@ -98,7 +98,7 @@ const LookDraw = () => {
 
   return (
     <div
-      className={`meta fixed bottom-20 left-1/2 z-[140] flex w-max max-w-[calc(100vw-2rem)] -translate-x-1/2 flex-wrap items-center justify-center gap-0.5 rounded-[22px] border border-line bg-bg/85 p-1 backdrop-blur-md transition-[opacity,visibility] duration-500 md:bottom-5 [@media(max-height:480px)]:hidden ${
+      className={`meta fixed bottom-5 left-1/2 z-[140] flex w-max max-w-[calc(100vw-2rem)] -translate-x-1/2 flex-wrap items-center justify-center gap-0.5 rounded-[22px] border border-line bg-bg/85 p-1 backdrop-blur-md transition-[opacity,visibility] duration-500 md:bottom-[var(--chip-y)] [@media(max-height:480px)]:hidden ${
         shown ? 'visible opacity-100' : 'invisible opacity-0'
       }`}
     >
